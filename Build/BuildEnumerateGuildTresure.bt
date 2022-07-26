@@ -1,0 +1,36 @@
+struct CAT {
+    uint32 unk;
+    char name[18];
+    uint32 prp;
+    ubyte personality;
+    ubyte class;
+    ubyte weaponType;
+    uint16 weaponId;
+};
+
+struct HUNT {
+    uint32 huntId;
+    uint32 destination;
+    uint32 level;
+    uint32 numHunters;
+    time_t ts;
+    ubyte treasureClaimed;
+    ubyte reportClaimed;
+    uint32 hostId;
+    char name[18];
+
+    CAT catData[5] <optimize=false>;
+};
+
+struct FILE {
+    uint16 opcode;
+    uint32 ackHandle;
+    ubyte isBuffered;
+    ubyte error;
+    uint16 packetSize;
+
+    uint16 numHunts;
+    uint16 numHunts;
+
+    HUNT hunts[numHunts] <optimize=false>;
+} file;

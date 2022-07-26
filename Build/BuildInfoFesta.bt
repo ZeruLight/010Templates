@@ -1,0 +1,76 @@
+struct TRIAL {
+    uint32 trialId;
+    ubyte unk;
+    ubyte trialType;
+    uint32 targetId;
+    uint16 goalNum;
+    uint16 location;
+    uint16 soulsReward;
+    ubyte unk;
+    ubyte monopolyState;
+    uint16 unk;
+};
+
+struct UNK {
+    uint32 unk;
+    uint16 unk;
+    uint16 unk;
+    uint32 unk;
+    ubyte unk;
+};
+
+struct UNK2 {
+    uint32 unk;
+    uint32 unk;
+    ubyte len;
+    string unkS;
+};
+
+struct FILE {
+    uint16 opcode;
+    uint32 ackHandle;
+    ubyte isBuffered;
+    ubyte unk;
+    uint16 packetSize;
+
+    uint32 festaId;
+    time_t registrationTime;
+    time_t festivalTime;
+    time_t totallingTime;
+    time_t rewardTime;
+    time_t unkTime;
+    time_t currentTime;
+
+    ubyte unk;
+    ubyte stringLen;
+    string festaString;
+
+    uint32 unk;
+    uint32 blueSouls;
+    uint32 redSouls;
+
+    uint16 numTrials;
+    TRIAL trials[numTrials];
+
+    uint16 numUnk;
+    UNK unkArray[numUnk];
+
+    uint16 unk;
+    uint16 unk;
+    uint16 unk;
+    uint16 unk;
+
+    local int i;
+    if (unk[5] > 0) {
+        for (i = 0; i < 11; i++) {
+            UNK2 unkString;
+        }
+    }
+
+    for (i = 0; i < 20; i++) {
+        uint16 unk;
+    }
+
+    uint16 lenMarkup;
+    string markup;
+} file;

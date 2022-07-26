@@ -1,0 +1,16 @@
+struct SOUVENIR {
+    uint32 unk1;
+    uint32 unk2;
+};
+
+struct FILE {
+    uint16 opcode;
+    uint32 ackHandle;
+    ubyte isBuffered;
+    ubyte error;
+    uint16 packetSize;
+
+    time_t unk;
+    uint16 numSouvenirs;
+    SOUVENIR souvenirs[numSouvenirs];
+} file;

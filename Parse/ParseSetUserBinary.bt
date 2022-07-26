@@ -1,0 +1,6 @@
+struct FILE {
+    uint16 opcode;
+    ubyte BinaryType;
+    uint16 DataSize;
+    ubyte Data[DataSize];
+} file;

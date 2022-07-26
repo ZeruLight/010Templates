@@ -1,0 +1,23 @@
+struct CAT {
+    uint32 catId;
+    if (catId > 0) {
+        uint32 prp;
+        ubyte personality;
+        ubyte class;
+        ubyte weaponType;
+        uint16 weaponId;
+    }
+};
+
+struct FILE {
+    uint16 opcode;
+    uint32 ackHandle;
+
+    uint16 dataSize;
+    uint32 destination;
+    uint32 level;
+    
+    CAT cats[5] <optimize=false>;
+
+    uint32 unk;
+} file;

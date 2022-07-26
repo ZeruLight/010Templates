@@ -1,0 +1,20 @@
+struct HOUSE {
+    uint32 charID;
+    ubyte openState;
+    ubyte password;
+    uint16 hr;
+    uint16 gr;
+    ubyte lenName;
+    char name[lenName];
+};
+
+struct FILE {
+    uint16 opcode;
+    uint32 ackHandle;
+    ubyte isBuffered;
+    ubyte error;
+    uint16 packetSize;
+
+    uint16 results;
+    HOUSE array[results] <optimize=false>;
+} file;

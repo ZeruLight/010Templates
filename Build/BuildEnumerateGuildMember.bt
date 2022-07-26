@@ -1,0 +1,26 @@
+struct MEMBER {
+    uint32 charId;
+    uint16 hr;
+    uint16 gr;
+    uint16 weaponId;
+    ubyte weaponType;
+    uint16 index;
+    uint16 nameLength;
+    string name;
+};
+
+
+struct FILE {
+    uint16 opcode;
+    uint32 ackHandle;
+    ubyte isBuffered;
+    ubyte error;
+    uint16 packetSize;
+
+    uint16 numMembers;
+    MEMBER members[numMembers] <optimize=false>;
+    time_t lastLogins[numMembers];
+    uint16 numAllies;
+    uint32 allyIds[numAllies];
+    uint32 unk[numMembers];
+} file;

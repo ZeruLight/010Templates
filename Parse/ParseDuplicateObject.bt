@@ -1,0 +1,9 @@
+struct FILE {
+    uint16 opcode;
+    uint32 ObjectID;
+    float X;
+    float Y;
+    float Z;
+    uint32 Unk;
+    uint32 OwnerCharID;
+} file;

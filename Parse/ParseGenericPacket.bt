@@ -1,0 +1,10 @@
+struct FILE {
+    uint16 opcode;
+    uint32 AckHandle;
+
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
+    
+    ubyte Data[PacketSize];
+} file;

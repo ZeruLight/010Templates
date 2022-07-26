@@ -1,0 +1,19 @@
+struct FILE {
+    uint16 opcode;
+    uint32 AckHandle;
+
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
+    
+    uint16 Unk;
+    uint16 Unk;
+    ubyte HouseTier;
+
+    ubyte UnkBytes0[80];
+    uint16 ItemBox;
+    ubyte UnkBytes1[113];
+
+    ubyte Padding[19];
+    ubyte Furniture[20];
+} file;
