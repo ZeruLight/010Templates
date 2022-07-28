@@ -11,19 +11,20 @@ struct TRIAL {
     uint16 unk;
 };
 
-struct UNK {
+struct REWARD {
     uint32 unk;
-    uint16 unk;
-    uint16 unk;
+    uint16 soulsReq;
+    uint16 itemID;
     uint32 unk;
-    ubyte unk;
+    ubyte claimed;
 };
 
-struct UNK2 {
-    uint32 unk;
-    uint32 unk;
+struct WINNER {
+    uint32 GuildID;
+    uint16 CategoryID;
+    uint16 Team;
     ubyte len;
-    string unkS;
+    string GuildName;
 };
 
 struct FILE {
@@ -52,22 +53,20 @@ struct FILE {
     uint16 numTrials;
     TRIAL trials[numTrials];
 
-    uint16 numUnk;
-    UNK unkArray[numUnk];
+    uint16 numRewards;
+    REWARD Rewards[numRewards];
 
     uint16 unk;
-    uint16 unk;
-    uint16 unk;
-    uint16 unk;
+    uint32 unk;
+
+    uint16 Winners;
+    WINNER CategoryWinners[Winners] <optimize=false>;
+
+    uint16 Winners;
+    WINNER DailyWinners[Winners] <optimize=false>;
 
     local int i;
-    if (unk[5] > 0) {
-        for (i = 0; i < 11; i++) {
-            UNK2 unkString;
-        }
-    }
-
-    for (i = 0; i < 20; i++) {
+    for (i = 0; i < 15; i++) {
         uint16 unk;
     }
 

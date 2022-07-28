@@ -1,0 +1,16 @@
+struct MEMBER {
+    uint16 Unk;
+    uint32 CharID;
+    uint32 Souls;
+};
+
+struct FILE {
+    uint16 opcode;
+    uint32 ackHandle;
+    ubyte isBuffered;
+    ubyte unk;
+    uint16 packetSize;
+
+    uint16 NumMembers;
+    MEMBER Members[NumMembers];
+} file;

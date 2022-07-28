@@ -1,0 +1,13 @@
+struct FILE {
+    uint16 opcode;
+    uint32 ackHandle;
+    ubyte isBuffered;
+    ubyte unk;
+    uint16 packetSize;
+
+    uint32 Souls;
+    uint32 Unk;
+    uint32 Unk;
+    uint32 Unk;
+    uint32 Unk;
+} file;
