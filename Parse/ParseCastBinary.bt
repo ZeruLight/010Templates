@@ -1,0 +1,23 @@
+enum <ubyte> BROADCASTTYPE {
+    Targeted = 1,
+    Stage = 3,
+    Semaphore = 6,
+    World = 10
+};
+
+enum <ubyte> MESSAGETYPE {
+    State,
+    Chat,
+    MailNotify = 4,
+    Emote = 6
+};
+
+struct FILE {
+    uint16 opcode;
+    uint16 Unk;
+    uint16 Unk;
+    BROADCASTTYPE BroadcastType;
+    MESSAGETYPE MessageType;
+    uint16 DataLen;
+    ubyte Data[DataLen];
+} file;

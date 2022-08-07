@@ -1,29 +1,31 @@
-struct ENTRY {
+struct ACHIEVEMENT {
     ubyte ID;
     ubyte Level;
-    uint16 Points;
+    uint16 Value;
     uint32 Required;
-    uint32 Unk;
-    uint32 Progress;
+    if (Level != 255) {
+        uint32 Trophy;
+        uint32 Progress;
+    }  
 };
 
 struct FILE {
     uint16 opcode;
-    uint32 ackHandle;
-    ubyte isBuffered;
-    ubyte unk;
-    uint16 packetSize;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
+    
+    uint32 Points;
+    uint32 Points;
+    uint32 Points;
+    uint32 Points;
+    
+    ubyte Unk;
+    ubyte Unk;
+    ubyte Unk;
 
-    uint32 Points;
-    uint32 Points;
-    uint32 Points;
-    uint32 Points;
-    
-    ubyte Unk;
-    ubyte Unk;
-    ubyte Unk;
-    
     ubyte Entries;
 
-    ENTRY Achievements[Entries];
+    ACHIEVEMENT Achievements[Entries] <optimize=false>;
 } file;

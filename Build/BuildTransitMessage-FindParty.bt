@@ -1,0 +1,24 @@
+struct PARTY {
+    uint32 IPAddress;
+    uint16 Port;
+    ubyte Unk0[13];
+    ubyte LenStage;
+    ubyte LenUnk2;
+    ubyte LenUnk3;
+    ubyte Unk1[16];
+    char Stage[LenStage];
+    char Unk2[LenUnk2];
+    char Unk3[LenUnk3];
+};
+
+struct FILE {
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
+
+    uint16 Results;
+
+    PARTY Parties[Results] <optimize=false>;
+} file;

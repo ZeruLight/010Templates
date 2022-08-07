@@ -1,0 +1,27 @@
+struct MAIL {
+    uint32 SenderID;
+    time_t SentAt;
+    ubyte AccIndex;
+    ubyte MailIndex;
+    ubyte Flags;
+    ubyte ItemAttached;
+    ubyte LenSubject;
+    ubyte LenSender;
+    char Subject[LenSubject];
+    char Sender[LenSender];
+    if (ItemAttached > 0) {
+        uint16 NumItem;
+        uint16 ItemID;
+    }
+};
+
+struct FILE {
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
+
+    uint32 NumMail;
+    MAIL Mail[NumMail] <optimize=false>;
+} file;

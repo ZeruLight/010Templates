@@ -1,0 +1,147 @@
+struct QSTRING (int len) {
+    char QString[len];
+};
+
+struct QUESTSTRINGS {
+    local int i, j;
+    uint32 Offsets[8];
+    for (i=0;i<7;i++) {
+        if (Offsets[i+1] - Offsets[i] > 0) {
+            j++;
+            QSTRING String(Offsets[i+1] - Offsets[i]);
+        }
+    }
+    string Description;
+    ubyte Unk;
+    while (Unk == 0) {
+        ubyte Unk;
+    }
+    char Unk1[Unk];
+};
+
+struct EQUIPREST {
+    uint16 ItemID;
+    uint16 Deco1;
+    uint16 Deco2;
+    uint16 Deco3;
+};
+
+struct REST {
+    ubyte Unk;
+    ubyte Unk;
+};
+
+struct MONICON {
+    ubyte Unk;
+    ubyte MonID;
+};
+
+struct QUEST {
+    uint32 Unk;
+    ubyte Unk;
+    uint32 Unk;
+    ubyte MaxPlayers;
+    uint16 CounterTab;
+    uint32 Unk;
+    ubyte Unk;
+    ubyte Mark;
+    uint16 Unk;
+    uint16 QuestID;
+    uint16 Unk;
+    ubyte ObjectiveType;
+    ubyte Unk;
+    ubyte Stars;
+    uint16 CourseReq;
+    uint16 Unk;
+    uint16 Unk;
+    ubyte Unk;
+    uint32 Fee;
+    uint32 RewardMain;
+    uint32 RewardSubA;
+    uint32 RewardSubB;
+    uint32 Unk;
+    uint32 TimeLimit;
+    ubyte MapIcon;
+    uint32 Unk;
+    ubyte Unk;
+    ubyte Unk;
+    REST Restrictions;
+    ubyte Unk;
+    uint16 QuestFileID;
+    uint32 Unk;
+    MONICON MonIcon;
+    ubyte Unk1[8];
+    uint16 MinHR;
+    uint16 MaxHR;
+    uint16 MinJoinHR;
+    uint16 MaxJoinHR;
+    uint32 Unk;
+    uint16 MinGR;
+    uint16 MaxGR;
+    uint16 MinJoinGR;
+    uint16 MaxJoinGR;
+    ubyte Unk2[10];
+    EQUIPREST BootRest;
+    EQUIPREST WepRest;
+    EQUIPREST HeadRest;
+    EQUIPREST ChestRest;
+    EQUIPREST ArmRest;
+    EQUIPREST WaistRest;
+    ubyte Unk3[11];
+    ubyte Mode;
+    ubyte Unk4[12];
+    uint32 ZennyMain;
+    uint32 ZennySub1;
+    uint32 ZennySub2;
+    uint16 RewardMat1;
+    uint16 RewardMat2;
+    uint16 RewardMat3;
+    uint32 Unk;
+    ubyte Unk5[134];
+    QUESTSTRINGS QuestStrings;
+};
+
+struct UNK1 {
+    uint16 Unk;
+    uint32 Unk;
+    uint32 Unk;
+};
+
+struct UNK2 {
+    ubyte Unk;
+    ubyte Unk;
+};
+
+struct UNK3 {
+    uint16 Unk;
+    uint16 Unk;
+    uint16 Unk;
+    uint16 Unk;
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
+
+    uint16 NumQuests;
+    LittleEndian();
+    QUEST Quests[NumQuests] <optimize=false>;
+
+    BigEndian();
+    uint16 Unk;
+    uint16 Unk1Len;
+    UNK1 Unk1[Unk1Len];
+
+    uint16 Unk2Len;
+    uint32 Unk3Len;
+    uint16 Unk;
+    UNK2 Unk2[Unk2Len];
+    UNK3 Unk3[Unk3Len];
+
+    uint16 CountQuests;
+    uint16 ReqIndex;
+} file;

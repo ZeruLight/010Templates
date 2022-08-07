@@ -1,0 +1,28 @@
+struct MEMBER {
+    uint32 IPAddress;
+    uint16 Port;
+    uint32 CharID;
+    ubyte Unk0;
+    ubyte LenName;
+    uint16 LenBinary;
+    ubyte Unk1[40];
+    ubyte LenStage;
+    ubyte Unk2[8];
+    char Name[LenName];
+    ubyte Binary[LenBinary];
+    char Stage[LenStage];
+};
+
+struct FILE {
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
+
+    uint16 Results;
+
+    MEMBER Members[Results] <optimize=false>;
+
+    ubyte Unk[7];
+} file;

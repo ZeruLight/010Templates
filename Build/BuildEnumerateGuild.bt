@@ -1,0 +1,28 @@
+struct GUILD {
+    uint32 GuildID;
+    uint32 LeaderID;
+    uint16 MemCount;
+    ubyte Unk;
+    ubyte Unk;
+    uint16 Rank;
+    time_t CreatedAt;
+    ubyte LenGuildName;
+    string GuildName;
+    ubyte LenLeaderName;
+    string LeaderName;
+    ubyte Unk;
+    ubyte Closed;
+};
+
+struct FILE {
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
+
+    uint16 NumGuilds;
+    ubyte Unk;
+    
+    GUILD Guilds[NumGuilds] <optimize=false>;
+} file;
