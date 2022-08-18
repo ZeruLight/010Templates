@@ -1,0 +1,26 @@
+struct RESULT {
+    uint32 Rank;
+    uint32 Score;
+    ubyte LenName;
+    char Name[LenName];
+    ubyte LenUnk;
+    char Unk[LenUnk];
+};
+
+struct FILE {
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
+
+    uint32 SelfRank;
+    uint32 SelfScore;
+    ubyte LenName;
+    char Name[LenName];
+    ubyte LenUnk;
+    char Unk[LenUnk];
+    
+    ubyte LenResults;
+    RESULT Results[LenResults] <optimize=false>;
+} file;

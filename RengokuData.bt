@@ -1,0 +1,35 @@
+struct UNK7 {
+    uint16 Unk7;
+};
+
+struct UNK10 {
+    uint32 Unk10;
+};
+
+struct UNK11 {
+    uint32 Unk11;
+};
+
+uint32 CurrentStagesCompleted;
+uint32 Unk1; // Current progress value
+uint16 Unk2;
+uint32 TotalRdP;
+uint16 Unk3;
+uint16 Unk4;
+uint32 Unk5;
+uint32 Unk6;
+ubyte LenUnk7 <hidden=true>;
+UNK7 Unk7[3];
+uint32 Unk8;
+uint32 Unk9;
+uint32 TotalStages;
+ubyte LenUnk10 <hidden=true>;
+UNK10 Unk10[3];
+ubyte LenUnk11 <hidden=true>;
+UNK11 Unk11[3];
+uint32 MaxStagesMP;
+uint32 MaxScoreMP;
+uint32 TotalStagesSP;
+uint32 MaxStagesSP;
+uint32 MaxScoreSP;
+uint32 Unk14;

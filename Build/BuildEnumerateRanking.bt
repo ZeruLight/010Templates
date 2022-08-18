@@ -1,0 +1,43 @@
+struct EVENT {
+    uint32 eventId;
+    uint16 unk;
+    uint16 unk;
+    uint32 unk;
+    ubyte titleLen;
+    char title[titleLen];
+};
+
+struct CUP {
+    uint32 cupId;
+    uint16 unk;
+    uint16 unk;
+    uint16 unk;
+    ubyte titleLen;
+    char title[titleLen];
+    uint16 descLen;
+    char desc[descLen];
+};
+
+struct FILE {
+    uint16 opcode;
+    uint32 ackHandle;
+    ubyte isBuffered;
+    ubyte unk;
+    uint16 packetSize;
+
+    time_t startTime;
+    time_t unkTime;
+    time_t unkTime;
+    time_t endTime;
+    time_t currentTime;
+
+    ubyte unk;
+    ubyte stringLen;
+    char tournamentString[stringLen];
+
+    uint16 numEvents;
+    EVENT events[numEvents] <optimize=false>;
+    
+    ubyte numCups;
+    CUP cups[numCups] <optimize=false>;
+} file;

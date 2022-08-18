@@ -1,0 +1,17 @@
+struct LOG {
+    time_t Timestamp;
+    char Name[18];
+    ubyte Unk;
+    ubyte Unk;
+};
+
+struct FILE {
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
+
+    uint32 NumLogs;
+    LOG Logs[NumLogs];
+} file;

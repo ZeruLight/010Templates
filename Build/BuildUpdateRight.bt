@@ -1,0 +1,16 @@
+struct RIGHT {
+    uint16 ID;
+    uint16 Unk;
+    time_t Expires;
+};
+
+struct FILE {
+    uint16 opcode;
+    uint32 AckHandle;
+    uint32 RightsBitfield;
+    uint16 NumRights;
+    uint16 Unk;
+
+    RIGHT Rights[NumRights];
+    uint16 Unk;
+} file;

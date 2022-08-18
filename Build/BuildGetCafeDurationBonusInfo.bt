@@ -1,0 +1,20 @@
+struct BONUS {
+    uint32 Seconds;
+    uint32 ItemType0;
+    uint32 ItemID;
+    uint32 Quantity;
+    ubyte Claimed;
+};
+
+struct FILE {
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
+
+    uint32 Unk;
+    time_t CurrentTime;
+    uint32 NumBonus;
+    BONUS Bonuses[NumBonus];
+} file;

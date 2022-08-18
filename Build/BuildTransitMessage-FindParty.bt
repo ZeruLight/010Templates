@@ -1,14 +1,24 @@
 struct PARTY {
     uint32 IPAddress;
     uint16 Port;
-    ubyte Unk0[13];
+    
+    uint16 Unk0; // Always 0?
+    uint16 Unk1; // Known: 0, 1, 2
+    uint16 CurrentPlayers;
+    uint16 MaxPlayers;
+    uint16 DepartedPlayers;
+    uint16 MaxPlayersDupe;
+    ubyte Unk3; // Always 1?
+
     ubyte LenStage;
-    ubyte LenUnk2;
-    ubyte LenUnk3;
-    ubyte Unk1[16];
+    ubyte LenBinary0;
+    ubyte LenBinary1;
+    uint16 RankRestriction;
+    uint16 Target;
+    ubyte Unk4[12];
     char Stage[LenStage];
-    char Unk2[LenUnk2];
-    char Unk3[LenUnk3];
+    char Binary0[LenBinary0];
+    char Binary1[LenBinary1];
 };
 
 struct FILE {

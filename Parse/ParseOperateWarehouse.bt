@@ -1,0 +1,10 @@
+struct FILE {
+    uint16 opcode;
+    uint32 AckHandle;
+
+    ubyte Operation;
+    uint16 Unk;
+    ubyte LenName;
+    uint16 Unk;
+    char Name[LenName];
+} file;
