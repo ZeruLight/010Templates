@@ -1,29 +1,30 @@
-struct QSTRING (int len) {
-    char QString[len];
+struct QSTRING {
+    string QString;
 };
 
 struct QUESTSTRINGS {
-    local int i, j;
     uint32 Offsets[8];
-    for (i=0;i<7;i++) {
-        if (Offsets[i+1] - Offsets[i] > 0) {
-            j++;
-            QSTRING String(Offsets[i+1] - Offsets[i]);
+    local int s = FTell();
+    local int i;
+    for (i=0;i<8;i++) {
+        FSeek(s+(Offsets[i]-Offsets[0]));
+        QSTRING String;
+    }
+    BigEndian();
+    while (1) {
+        ubyte LenUnk;
+        if (LenUnk != 0) {
+            break;
         }
     }
-    string Description;
-    ubyte Unk;
-    while (Unk == 0) {
-        ubyte Unk;
-    }
-    char Unk1[Unk];
+    char Unk[LenUnk];
 };
 
 struct EQUIPREST {
-    uint16 ItemID;
-    uint16 Deco1;
-    uint16 Deco2;
-    uint16 Deco3;
+    uint16 ItemID <fgcolor=0xffffff>;
+    uint16 Deco1 <fgcolor=0x00ffff>;
+    uint16 Deco2 <fgcolor=0xff00ff>;
+    uint16 Deco3 <fgcolor=0xffff00>;
 };
 
 struct REST {
@@ -37,68 +38,72 @@ struct MONICON {
 };
 
 struct QUEST {
-    uint32 Unk;
-    ubyte Unk;
-    uint32 Unk;
-    ubyte MaxPlayers;
-    uint16 CounterTab;
-    uint32 Unk;
-    ubyte Unk;
-    ubyte Mark;
-    uint16 Unk;
-    uint16 QuestID;
-    uint16 Unk;
-    ubyte ObjectiveType;
-    ubyte Unk;
-    ubyte Stars;
-    uint16 CourseReq;
-    uint16 Unk;
-    uint16 Unk;
-    ubyte Unk;
-    uint32 Fee;
-    uint32 RewardMain;
-    uint32 RewardSubA;
-    uint32 RewardSubB;
-    uint32 Unk;
-    uint32 TimeLimit;
-    ubyte MapIcon;
-    uint32 Unk;
-    ubyte Unk;
-    ubyte Unk;
-    REST Restrictions;
-    ubyte Unk;
-    uint16 QuestFileID;
-    uint32 Unk;
-    MONICON MonIcon;
-    ubyte Unk1[8];
-    uint16 MinHR;
-    uint16 MaxHR;
-    uint16 MinJoinHR;
-    uint16 MaxJoinHR;
-    uint32 Unk;
-    uint16 MinGR;
-    uint16 MaxGR;
-    uint16 MinJoinGR;
-    uint16 MaxJoinGR;
-    ubyte Unk2[10];
-    EQUIPREST BootRest;
-    EQUIPREST WepRest;
-    EQUIPREST HeadRest;
-    EQUIPREST ChestRest;
-    EQUIPREST ArmRest;
-    EQUIPREST WaistRest;
-    ubyte Unk3[11];
-    ubyte Mode;
-    ubyte Unk4[12];
-    uint32 ZennyMain;
-    uint32 ZennySub1;
-    uint32 ZennySub2;
-    uint16 RewardMat1;
-    uint16 RewardMat2;
-    uint16 RewardMat3;
-    uint32 Unk;
-    ubyte Unk5[134];
-    QUESTSTRINGS QuestStrings;
+    LittleEndian();
+    uint32 QuestID <bgcolor=0x0000ff>;
+    ubyte Unk <hidden=true>;
+    uint32 Unk <hidden=true>;
+    ubyte MaxPlayers <bgcolor=0x00ff00>;
+    uint16 CounterTab <bgcolor=0xff0000>;
+    uint32 Unk <hidden=true>;
+    ubyte Unk <hidden=true>;
+    ubyte Mark <bgcolor=0x00ff00>;
+    uint16 Unk <hidden=true>;
+    uint16 QuestID <bgcolor=0x0000ff>;
+    uint16 Unk <hidden=true>;
+    ubyte ObjectiveType <bgcolor=0x00ff00>;
+    ubyte Unk <hidden=true>;
+    ubyte Stars <bgcolor=0xff0000>;
+    uint16 CourseReq <bgcolor=0x0000ff>;
+    uint16 Unk <hidden=true>;
+    uint16 Unk <hidden=true>;
+    ubyte Unk <hidden=true>;
+    uint32 Fee <bgcolor=0x00ff00>;
+    uint32 RewardMain <bgcolor=0xff0000>;
+    uint32 RewardSubA <bgcolor=0x0000ff>;
+    uint32 RewardSubB <bgcolor=0x00ff00>;
+    uint32 Unk <hidden=true>;
+    uint32 TimeLimit <bgcolor=0xff0000>;
+    ubyte MapIcon <bgcolor=0x0000ff>;
+    uint32 Unk <hidden=true>;
+    ubyte Unk <hidden=true>;
+    ubyte Unk <hidden=true>;
+    REST Restrictions <bgcolor=0x00ff00>;
+    ubyte Unk <hidden=true>;
+    uint16 QuestFileID <bgcolor=0xff0000>;
+    uint32 Unk <hidden=true>;
+    MONICON MonIcon <bgcolor=0x0000ff>;
+    uint16 MinHR <bgcolor=0x00ff00>;
+    uint16 MaxHR <bgcolor=0xff0000>;
+    uint16 MinJoinHR <bgcolor=0x0000ff>;
+    uint16 MaxJoinHR <bgcolor=0x00ff00>;
+    uint16 MinSR <bgcolor=0x00ff00>;
+    uint16 MaxSR <bgcolor=0xff0000>;
+    uint16 MinJoinSR <bgcolor=0x0000ff>;
+    uint16 MaxJoinSR <bgcolor=0x00ff00>;
+    uint32 Unk <hidden=true>;
+    uint16 MinGR <bgcolor=0xff0000>;
+    uint16 MaxGR <bgcolor=0x0000ff>;
+    uint16 MinJoinGR <bgcolor=0x00ff00>;
+    uint16 MaxJoinGR <bgcolor=0xff0000>;
+    ubyte Unk2[10] <hidden=true>;
+    EQUIPREST BootRest <bgcolor=0x0000ff>;
+    EQUIPREST WepRest <bgcolor=0x00ff00>;
+    EQUIPREST HeadRest <bgcolor=0xff0000>;
+    EQUIPREST ChestRest <bgcolor=0x0000ff>;
+    EQUIPREST ArmRest <bgcolor=0x00ff00>;
+    EQUIPREST WaistRest <bgcolor=0xff0000>;
+    ubyte Unk3[11] <hidden=true>;
+    ubyte Mode <bgcolor=0x0000ff>;
+    ubyte Unk4[12] <hidden=true>;
+    uint32 ZennyMain <bgcolor=0x00ff00>;
+    uint32 ZennySub1 <bgcolor=0xff0000>;
+    uint32 ZennySub2 <bgcolor=0x0000ff>;
+    uint16 RewardMat1 <bgcolor=0x00ff00>;
+    uint16 RewardMat2 <bgcolor=0xff0000>;
+    uint16 RewardMat3 <bgcolor=0x0000ff>;
+    uint32 Unk <hidden=true>;
+    ubyte Unk5[134] <hidden=true>;
+    QUESTSTRINGS QuestStrings <bgcolor=0x00ff00>;
 };
 
 struct UNK1 {
