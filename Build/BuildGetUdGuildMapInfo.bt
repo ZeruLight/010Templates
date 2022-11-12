@@ -1,0 +1,71 @@
+struct TILE { // 23 bytes
+    uint16 TileID;
+    uint16 NextTile;
+
+    // If type == 3
+    uint16 UnkObjective;
+    // OR
+    uint16 QuestFileID;
+
+    uint32 Unk1;
+    ubyte BranchIndex;
+    ubyte Type;
+    uint32 Points;
+    ubyte Unk2[5];
+};
+
+struct MAP { // 1480 bytes
+    uint32 MapID;
+    uint32 NextMapID;
+    TILE Tiles[64];
+};
+
+struct UNK {
+    uint32 Unk1;
+    ubyte Unk2[3];
+    uint16 Unk3;
+    uint16 Unk4;
+    uint16 Unk5;
+    ubyte Unk6;
+};
+
+struct TILEPROG { // 23 bytes
+    uint32 PointsProg;
+    uint32 PointsReq;
+    uint16 TileID;
+    uint16 NextTile;
+
+    // If type == 3
+    uint16 UnkObjective;
+    // OR
+    uint16 QuestFileID;
+
+    uint32 Unk;
+    ubyte BranchIndex;
+    ubyte Type;
+    ubyte Claimed;
+};
+
+struct MAPPROG {
+    uint32 MapID;
+    uint16 Unk;
+    ubyte NumTiles;
+    TILEPROG Tiles[NumTiles];
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
+
+    uint16 NumMaps;
+    MAP Maps[NumMaps];
+    uint16 NumUnk;
+    UNK Unks[NumUnk];
+    ubyte NumMapProg;
+    MAPPROG MapProg[NumMapProg] <optimize=false>;
+    uint32 TilesClaimed;
+} file;
