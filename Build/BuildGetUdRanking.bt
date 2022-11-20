@@ -1,0 +1,15 @@
+struct RANK {
+    uint16 Rank;
+    char Name[25];
+    uint32 Points;
+};
+
+struct FILE {
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte Error;
+    uint16 PacketSize;
+
+    RANK Ranks[100] <optimize=false>;
+} file;

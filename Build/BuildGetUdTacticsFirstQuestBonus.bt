@@ -1,0 +1,17 @@
+struct BONUS {
+    ubyte Unk; // bool Claimed?
+    uint32 Points;
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
+
+    ubyte LenBonus;
+    BONUS Bonus[LenBonus];
+} file;

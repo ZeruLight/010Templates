@@ -1,0 +1,18 @@
+struct KIJU {
+    char Name[32];
+    char Description[512];
+    ubyte Color;
+    ubyte Effect;
+};
+
+struct FILE {
+    uint16 opcode;
+    uint32 AckHandle;
+
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
+    
+    ubyte NumKiju;
+    KIJU Kiju[NumKiju]<optimize=false>;
+} file;

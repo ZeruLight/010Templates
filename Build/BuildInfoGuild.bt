@@ -1,3 +1,16 @@
+struct ICONPART {
+    uint16 Index;
+    uint16 ID;
+    ubyte Page;
+    ubyte Size;
+    ubyte Rotation;
+    ubyte Red;
+    ubyte Green;
+    ubyte Blue;
+    uint16 PosX;
+    uint16 PosY;
+};
+
 struct FILE {
     uint16 opcode;
     uint32 AckHandle;
@@ -38,5 +51,6 @@ struct FILE {
     uint32 AllianceID;
     uint16 NumGApplicants;
     uint16 NumAApplicants;
-    ubyte IconParts;
+    ubyte NumParts;
+    ICONPART Parts[NumParts];
 } file;
