@@ -1,12 +1,8 @@
 struct TILE { // 23 bytes
     uint16 TileID;
     uint16 NextTile;
-
-    // If type == 3
-    uint16 UnkObjective;
-    // OR
+    uint16 BranchTile;
     uint16 QuestFileID;
-
     uint32 Unk1;
     ubyte BranchIndex;
     ubyte Type;
@@ -20,13 +16,14 @@ struct MAP { // 1480 bytes
     TILE Tiles[64];
 };
 
-struct UNK {
-    uint32 Unk1;
-    ubyte Unk2[3];
-    uint16 Unk3;
-    uint16 Unk4;
+struct CHESTS { // 14 bytes
+    uint32 Unk1; // Map index?
+    ubyte ItemType;
+    uint16 ItemID;
+    uint16 Quantity;
+    uint16 Unk4; // Treasure tile index?
     uint16 Unk5;
-    ubyte Unk6;
+    ubyte ChestType; // 1 = yellow, 2 = red
 };
 
 struct TILEPROG { // 23 bytes
@@ -34,12 +31,8 @@ struct TILEPROG { // 23 bytes
     uint32 PointsReq;
     uint16 TileID;
     uint16 NextTile;
-
-    // If type == 3
-    uint16 UnkObjective;
-    // OR
+    uint16 BranchTile;
     uint16 QuestFileID;
-
     uint32 Unk;
     ubyte BranchIndex;
     ubyte Type;
@@ -63,8 +56,8 @@ struct FILE {
 
     uint16 NumMaps;
     MAP Maps[NumMaps];
-    uint16 NumUnk;
-    UNK Unks[NumUnk];
+    uint16 NumChests;
+    CHESTS Chests[NumChests];
     ubyte NumMapProg;
     MAPPROG MapProg[NumMapProg] <optimize=false>;
     uint32 TilesClaimed;
