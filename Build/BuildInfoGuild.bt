@@ -1,3 +1,13 @@
+struct PS1 {
+    ubyte Len;
+    char String[Len];
+};
+
+struct PS2 {
+    uint16 Len;
+    char String[Len];
+};
+
 struct ICONPART {
     uint16 Index;
     uint16 ID;
@@ -11,7 +21,28 @@ struct ICONPART {
     uint16 PosY;
 };
 
+struct OUTFIT {
+    ubyte Poogie1Outfit;
+    ubyte Poogie2Outfit;
+    ubyte Poogie3Outfit;
+    ubyte Poogie1Outfit;
+    ubyte Poogie2Outfit;
+    ubyte Poogie3Outfit;
+    uint32 OutfitBitfield;
+};
+
+struct ALLYGUILD {
+    uint32 GuildID;
+    uint32 Unk;
+    uint16 IsOwnGuild;
+    uint16 Rank;
+    uint16 Members;
+    PS2 GuildName;
+    PS2 LeaderName;
+};
+
 struct FILE {
+    BigEndian();
     uint16 opcode;
     uint32 AckHandle;
     ubyte IsBuffered;
@@ -24,7 +55,8 @@ struct FILE {
     uint16 Members;
     ubyte MottoMain;
     ubyte MottoSub;
-    ubyte Unk0[7];
+    ubyte Unk0[6];
+    ubyte ClosedRecruiting;
     uint16 CharRank;
     time_t CreatedAt;
     time_t JoinedAt;
@@ -39,18 +71,26 @@ struct FILE {
     char GuildLeader[LenGuildLeader];
     ubyte Unk2[4];
     ubyte ReturnGuild;
-    ubyte Unk3[3];
+    ubyte EarnedSpecialHall;
+    ubyte Unk3[2];
     uint32 EventRP;
-    ubyte LenPugi1;
-    char Pugi1[LenPugi1];
-    ubyte LenPugi2;
-    char Pugi2[LenPugi2];
-    ubyte LenPugi3;
-    char Pugi3[LenPugi3];
-    ubyte Unk4[23];
+    PS1 Pugi1Name;
+    PS1 Pugi2Name;
+    PS1 Pugi3Name;
+    OUTFIT OutfitData;
+    ubyte Unk4[13];
     uint32 AllianceID;
+    if (AllianceID > 0) {
+        time_t CreatedAt;
+        uint16 AllianceMembers;
+        uint16 Unk;
+        PS2 AllianceName;
+        ubyte NumAllyGuilds;
+        ALLYGUILD AllyGuilds[NumAllyGuilds] <optimize=false>;
+    }    
     uint16 NumGApplicants;
     uint16 NumAApplicants;
     ubyte NumParts;
     ICONPART Parts[NumParts];
+    ubyte Unk;
 } file;

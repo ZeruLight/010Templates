@@ -1,4 +1,5 @@
 struct FILE {
+    BigEndian();
     uint16 opcode;
     ubyte BinaryType;
     uint16 DataSize;

@@ -1,43 +1,51 @@
+struct PS1 {
+    ubyte Len;
+    char String[Len];
+};
+
+struct PS2 {
+    uint16 Len;
+    char String[Len];
+};
+
 struct EVENT {
-    uint32 eventId;
-    uint16 unk;
-    uint16 unk;
-    uint32 unk;
-    ubyte titleLen;
-    char title[titleLen];
+    uint32 EventID;
+    uint16 CupGroup;
+    uint16 Limit;
+    uint16 Unk;
+    uint16 QuestFileID;
+    PS1 EventTitle;
 };
 
 struct CUP {
-    uint32 cupId;
-    uint16 unk;
-    uint16 unk;
-    uint16 unk;
-    ubyte titleLen;
-    char title[titleLen];
-    uint16 descLen;
-    char desc[descLen];
+    uint32 CupID;
+    uint16 CupGroup;
+    uint16 Unk;
+    uint16 Unk;
+    PS1 CupTitle;
+    PS2 CupDesc;
 };
 
 struct FILE {
+    BigEndian();
     uint16 opcode;
-    uint32 ackHandle;
-    ubyte isBuffered;
-    ubyte unk;
-    uint16 packetSize;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte Unk;
+    uint16 PacketSize;
 
-    time_t startTime;
-    time_t unkTime;
-    time_t unkTime;
-    time_t endTime;
-    time_t currentTime;
+    time_t TimeStart;
+    time_t TimeEnd;
+    time_t TimeUnk;
+    time_t TimeUnk;
+    time_t TimeCurrent;
 
-    ubyte unk;
-    ubyte stringLen;
-    char tournamentString[stringLen];
+    ubyte Unk;
+    PS1 TournamentTitle;
 
-    uint16 numEvents;
-    EVENT events[numEvents] <optimize=false>;
+    uint16 NumEvents;
+    EVENT Events[NumEvents] <optimize=false>;
     
-    ubyte numCups;
-    CUP cups[numCups] <optimize=false>;
+    ubyte NumCups;
+    CUP Cups[NumCups] <optimize=false>;
 } file;

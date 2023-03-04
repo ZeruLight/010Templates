@@ -1,0 +1,21 @@
+struct DAILYREWARD {
+    ubyte ItemType;
+    uint16 ItemID;
+    uint16 Quantity;
+    ubyte GR;
+    uint32 MaxRank;
+    uint32 MinRank;
+    ubyte Days;
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
+
+    uint16 NumRewards;
+    DAILYREWARD PersonalRewards[NumRewards];
+} file;

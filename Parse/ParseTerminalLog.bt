@@ -1,0 +1,25 @@
+struct LOGENTRY {
+    uint32 Index;
+    // Type map
+    // 01 08 = 264 = quest taken
+    // 06 01 = 1537 = carve reward
+    // 09 01 = 2305 = item usage
+    // 0D 01 = 3329 = bento item taken
+    // 1B 01 = 6913 = reward box item
+    // 1F 01 = 7937 = item gain
+    // 42 47 = 16967 = partnya rank
+    // 99 91 = 39313 = halk items fed
+    ubyte Type1;
+    ubyte Type2;
+    int16 Data[15];
+};
+
+struct FILE {
+    uint16 opcode;
+    uint32 AckHandle;
+
+    uint32 LogID;
+    uint16 Entries;
+    uint16 Unk;
+    LOGENTRY Entry[Entries];
+} file;

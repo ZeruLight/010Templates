@@ -1,0 +1,44 @@
+enum <ubyte> GACHATYPE {
+    Normal,
+    StepUp,
+    StepUpEvent,
+    NormalEvent,
+    Box,
+    BoxEvent
+};
+
+struct PS1 {
+    ubyte Len;
+    char String[Len];
+};
+
+struct GACHA {
+    uint32 ID;
+    ubyte UnkRank[16];
+    uint32 MinGR;
+    uint32 MinHR;
+    uint32 Unk;
+    PS1 Name;
+    PS1 Link1;
+    PS1 Link2;
+    ubyte IsWide;
+    PS1 Link3;
+    ubyte UnkFlag;
+    ubyte Recommended;
+    GACHATYPE GachaType;
+    ubyte Hidden;
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
+
+    uint16 NumGacha;
+    uint16 NumGacha;
+    
+    GACHA Gacha[NumGacha] <optimize=false>;
+} file;

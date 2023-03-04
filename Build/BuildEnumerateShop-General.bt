@@ -1,0 +1,29 @@
+struct ITEM {
+    uint32 ID;
+    uint16 Unk;
+    uint16 ItemID;
+    uint32 Cost;
+    uint16 Quantity;
+    uint16 MinHR;
+    uint16 MinSR;
+    uint16 MinGR;
+    uint16 StoreLevel;
+    uint16 MaxQuantity;
+    uint16 UsedQuantity;
+    uint16 RoadFloors;
+    uint16 RoadFatalis;
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
+
+    uint16 NumItems;
+    uint16 NumItems;
+    
+    ITEM Items[NumItems] <optimize=false>;
+} file;

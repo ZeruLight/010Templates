@@ -1,0 +1,16 @@
+struct BOXITEM {
+    uint32 ID;
+    ubyte State;
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
+
+    ubyte NumItems;
+    BOXITEM Items[NumItems];
+} file;

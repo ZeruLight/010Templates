@@ -5,6 +5,7 @@ struct RIGHT {
 };
 
 struct FILE {
+    BigEndian();
     uint16 opcode;
     uint32 AckHandle;
     uint32 RightsBitfield;

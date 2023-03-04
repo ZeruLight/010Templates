@@ -8,6 +8,8 @@ enum <ubyte> BROADCASTTYPE {
 enum <ubyte> MESSAGETYPE {
     State,
     Chat,
+    Quest,
+    Data,
     MailNotify = 4,
     Emote = 6
 };

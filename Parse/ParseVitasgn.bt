@@ -1,0 +1,26 @@
+struct PIECE {
+    uint16 Len;
+    char Data[Len];
+    uint16 Unk;
+};
+
+struct CHUNK {
+    uint16 Unk;
+    uint16 LenChunk;
+
+    uint16 Unk1; // Pieces?
+    PIECE Pieces[Unk1+4] <optimize=false>;
+};
+
+struct FILE {
+    BigEndian();
+    string LoginCode;
+    string Username; // ?
+    string Password; // ?
+    uint16 Unk;
+    uint32 LenData;
+
+    CHUNK Chunk1 <optimize=false>;
+    uint16 Unk;
+    CHUNK Chunk2 <optimize=false>;
+} file;

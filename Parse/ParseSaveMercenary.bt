@@ -1,0 +1,12 @@
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    
+    uint32 LenData;
+    uint32 GCP;
+    uint32 ContractID;
+    uint32 MercDataSize;
+    uint32 MercIndex;
+    ubyte MercData[MercDataSize];
+} file;

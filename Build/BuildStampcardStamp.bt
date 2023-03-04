@@ -1,0 +1,19 @@
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte Unk;
+    uint16 PacketSize;
+
+    uint16 HR;
+    uint16 GR;
+
+    uint16 StampOld;
+    uint16 StampNew;
+
+    uint16 StampUpdate;
+    uint16 RewardID;
+    uint16 RewardItemID;
+    uint16 RewardQuantity;
+} file;

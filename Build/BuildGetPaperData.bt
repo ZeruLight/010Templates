@@ -1,0 +1,17 @@
+struct PAPER {
+    uint16 Unk[7];
+};
+
+struct FILE {
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte Error;
+    uint16 PacketSize;
+
+    uint32 ID;
+    uint32 Unk;
+    uint32 Unk;
+    uint32 NumPaper;
+    PAPER Paper[NumPaper];
+} file;

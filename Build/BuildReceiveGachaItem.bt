@@ -1,0 +1,17 @@
+struct GACHAITEM {
+    ubyte Type;
+    uint16 ID;
+    uint16 Quantity;
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
+
+    ubyte NumItems;
+    GACHAITEM GachaItems[NumItems] <optimize=false>;
+} file;

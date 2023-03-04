@@ -1,0 +1,28 @@
+struct PS4 {
+    uint32 Len;
+    char String[Len];
+};
+
+struct POST {
+    uint32 Type;
+    uint32 AuthorID;
+    uint32 Unk;
+    time_t CreatedAt;
+    uint32 Likes;
+    ubyte Liked;
+    uint32 StampID;
+    PS4 Title;
+    PS4 Body;
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
+
+    uint32 NumPosts;
+    POST Posts[NumPosts] <optimize=false>;
+} file;

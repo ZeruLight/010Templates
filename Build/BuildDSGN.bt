@@ -1,0 +1,77 @@
+struct PS1 {
+    ubyte Len;
+    char String[Len];
+};
+
+struct PS2 {
+    uint16 Len;
+    char String[Len];
+};
+
+struct PS4 {
+    uint32 Len;
+    char String[Len];
+};
+
+struct CHARA {
+    uint32 CID;
+    uint16 HRP;
+    uint16 WeaponType;
+    uint32 LastLogin;
+    ubyte IsFemale;
+    ubyte IsNew;
+    ubyte OldGR;
+    ubyte UseNewGR;
+    char Name[16];
+    char Unk[32];
+    uint16 GR;
+    uint16 Unk;
+};
+
+struct CONTACT {
+    uint32 MyID;
+    uint32 TheirID;
+    PS1 Name;
+};
+
+struct FILE {
+    BigEndian();
+    ubyte RespCode;
+    ubyte NumPatchServer;
+    ubyte NumEntryServer;
+    ubyte NumChars;
+    uint32 LoginTokenID;
+    ubyte LoginToken[16];
+    time_t CurrentTime;
+    PS1 PatchServers[NumPatchServer]<optimize=false>;
+    PS1 EntryServers[NumEntryServer]<optimize=false>;
+    CHARA Characters[NumChars]<optimize=false>;
+    ubyte NumFriends;
+    CONTACT Friends[NumFriends]<optimize=false>;
+    ubyte NumGuildmates;
+    CONTACT Guildmates[NumGuildmates]<optimize=false>;
+    ubyte NumNotice;
+    PS4 Notices[NumNotice]<optimize=false>;
+    uint32 LastCID;
+    uint32 Rights;
+    PS2 Filters;
+
+    // If logging in via PSN
+    //char PSNName[20];
+
+    uint32 Unk;
+    PS2 Unk; // Key?
+    ubyte Unk;
+    uint32 Unk;
+    uint16 Unk;
+    PS2 Unk;
+    time_t ReturnExpiry;
+    uint32 Unk;
+    uint32 UnkID;
+    uint32 MezFesStart;
+    uint32 MezFesEnd;
+    ubyte Unk;
+    uint32 SoloTickets;
+    uint32 GroupTickets;
+    PS1 MezFesStalls; // Not a string obviously
+} file;

@@ -1,0 +1,40 @@
+struct PS1 {
+    ubyte Len;
+    char String[Len];
+};
+
+struct ROLLITEM {
+    uint16 Type;
+    uint16 ID;
+    uint16 Quantity;
+};
+
+struct ROLL {
+    ubyte Type;
+    uint32 ID;
+    ubyte ItemType;
+    uint16 Unk;
+    uint16 ItemID;
+    uint16 Quantity;
+    uint16 Percentage;
+    ubyte Rarity;
+    ubyte RollCount;
+    ubyte NumItems;
+    uint16 FrontierPoints;
+    ubyte DailyLimit;
+    ubyte Unk;
+    ROLLITEM RollItems[NumItems];
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
+
+    uint32 ID;
+    uint16 NumRolls;
+    ROLL Rolls[NumRolls] <optimize=false>;
+} file;

@@ -1,0 +1,30 @@
+struct LENDPACT {
+    uint32 MercID;
+    uint32 CID;
+    ubyte Unk;
+    time_t ContractStart;
+    time_t ContractExpire;
+    char Name[18];
+};
+
+struct LOANPACT {
+    uint32 MercID;
+    uint32 CID;
+    time_t ContractStart;
+    time_t ContractExpire;
+    char Name[18];
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte Unk;
+    uint16 PacketSize;
+    
+    ubyte NumLends;
+    LENDPACT Lends[NumLends];
+    ubyte NumLoans;
+    LOANPACT Loans[NumLoans];
+} file;

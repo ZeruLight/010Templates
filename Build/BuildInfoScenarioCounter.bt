@@ -1,0 +1,17 @@
+struct SCENARIO {
+    uint32 ID;
+    ubyte Unk1;
+    ubyte Category;
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
+
+    ubyte NumScenarios;
+    SCENARIO Scenarios[NumScenarios];
+} file;

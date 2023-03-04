@@ -49,7 +49,7 @@ struct QUEST {
     ubyte Mark <bgcolor=0x00ff00>;
     uint16 Unk <hidden=true>;
     uint16 QuestID <bgcolor=0x0000ff>;
-    uint16 Unk <hidden=true>;
+    uint16 Unk;
     ubyte ObjectiveType <bgcolor=0x00ff00>;
     ubyte Unk <hidden=true>;
     ubyte Stars <bgcolor=0xff0000>;
@@ -107,21 +107,20 @@ struct QUEST {
 };
 
 struct UNK1 {
-    uint16 Unk;
-    uint32 Unk;
-    uint32 Unk;
-};
-
-struct UNK2 {
+    uint16 Unk0 <bgcolor=0xff0000>;
+    uint16 Unk1 <bgcolor=0x00ff00>;
     ubyte Unk;
     ubyte Unk;
+    ubyte Unk;
+    ubyte Unk;
+    uint16 Unk2 <bgcolor=0x0000ff>;
 };
 
-struct UNK3 {
+struct VSBETS {
+    ubyte IsTicket;
+    ubyte Unk;
     uint16 Unk;
-    uint16 Unk;
-    uint16 Unk;
-    uint16 Unk;
+    uint32 Quantity;
 };
 
 struct FILE {
@@ -137,16 +136,19 @@ struct FILE {
     QUEST Quests[NumQuests] <optimize=false>;
 
     BigEndian();
-    uint16 Unk;
-    uint16 Unk1Len;
-    UNK1 Unk1[Unk1Len];
+    uint16 Unk <fgcolor=0xff0000>;
 
-    uint16 Unk2Len;
-    uint32 Unk3Len;
-    uint16 Unk;
-    UNK2 Unk2[Unk2Len];
-    UNK3 Unk3[Unk3Len];
+    local int Test;
 
-    uint16 CountQuests;
-    uint16 ReqIndex;
+    uint16 Unk1Len <fgcolor=0x00ff00>;
+    UNK1 Unk1[Unk1Len] <optimize=false,fgcolor=0x0000ff>;
+
+    uint16 VSItemsLen <fgcolor=0xff0000>;
+    uint32 VSBetsLen <fgcolor=0x00ff00>;
+    uint16 Unk <fgcolor=0x0000ff>;
+    uint16 VSItems[VSItemsLen] <fgcolor=0xff0000>;
+    VSBETS VSBets[VSBetsLen] <fgcolor=0x00ff00>;
+
+    uint16 CountQuests <fgcolor=0x0000ff>;
+    uint16 ReqIndex <fgcolor=0xff0000>;
 } file;
