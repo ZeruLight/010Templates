@@ -106,14 +106,16 @@ struct QUEST {
     QUESTSTRINGS QuestStrings <bgcolor=0x00ff00>;
 };
 
-struct UNK1 {
-    uint16 Unk0 <bgcolor=0xff0000>;
-    uint16 Unk1 <bgcolor=0x00ff00>;
+struct TUNES {
+    uint16 ID <bgcolor=0xff0000>;
+    uint16 TimeOffset <bgcolor=0x00ff00>;
     ubyte Unk;
     ubyte Unk;
     ubyte Unk;
     ubyte Unk;
-    uint16 Unk2 <bgcolor=0x0000ff>;
+    uint16 Value <bgcolor=0x0000ff>;
+    local uint16 RealID = ID^TimeOffset;
+    local uint16 RealValue = Value^TimeOffset;
 };
 
 struct VSBETS {
@@ -136,12 +138,9 @@ struct FILE {
     QUEST Quests[NumQuests] <optimize=false>;
 
     BigEndian();
-    uint16 Unk <fgcolor=0xff0000>;
-
-    local int Test;
-
-    uint16 Unk1Len <fgcolor=0x00ff00>;
-    UNK1 Unk1[Unk1Len] <optimize=false,fgcolor=0x0000ff>;
+    uint16 TimeOffset <fgcolor=0xff0000>;
+    uint16 TunesLen <fgcolor=0x00ff00>;
+    TUNES Tunes[TunesLen] <optimize=false,fgcolor=0x0000ff>;
 
     uint16 VSItemsLen <fgcolor=0xff0000>;
     uint32 VSBetsLen <fgcolor=0x00ff00>;

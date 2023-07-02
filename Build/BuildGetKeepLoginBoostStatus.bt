@@ -1,0 +1,17 @@
+struct BOOST {
+    ubyte WeekReq;
+    ubyte Active;
+    ubyte WeeksPassed;
+    time_t Expiration;
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte Unk;
+    uint16 PacketSize;
+
+    BOOST Boosts[5];
+} file;

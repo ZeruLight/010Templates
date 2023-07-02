@@ -1,0 +1,18 @@
+struct FEATURE {
+    time_t Timestamp;
+    uint32 WeaponBitfield;
+    uint16 Unk;
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte Unk;
+    uint16 PacketSize;
+
+    ubyte NumFeatures;
+    time_t Unk;
+    FEATURE Features[NumFeatures];
+} file;

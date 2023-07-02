@@ -1,0 +1,18 @@
+struct MEAL {
+    uint32 OverwriteID;
+    uint32 MealID;
+    uint32 Success;
+    time_t RegisteredAt;
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte Unk;
+    uint16 PacketSize;
+
+    uint16 NumMeals;
+    MEAL Meals[NumMeals];
+} file;

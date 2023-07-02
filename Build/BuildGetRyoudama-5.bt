@@ -1,0 +1,24 @@
+struct DATA {
+    uint32 CharID;
+    uint32 GemID;
+    char Name[14];
+};
+
+struct ENTRY {
+    DATA Data[14];
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte Unk;
+    uint16 PacketSize;
+
+    uint32 ID;
+    uint32 Null;
+    uint32 Null;
+    uint32 NumEntries;
+    ENTRY Entries[NumEntries];
+} file;

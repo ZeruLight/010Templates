@@ -1,0 +1,28 @@
+struct DATA {
+    ubyte Zone;
+    ubyte Mission;
+    uint16 Goal;
+    uint16 Unk3;
+    ubyte Unk4;
+    ubyte Unk5;
+    ubyte Unk6;
+    ubyte Unk7;
+    ubyte Unk8;
+    ubyte Unk9;
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte Unk;
+    uint16 PacketSize;
+
+    uint32 Unk;
+    uint32 Unk;
+    uint32 Unk;
+    uint32 TenrouiraiLen;
+
+    DATA Tenrouirai[TenrouiraiLen] <optimize=false>;
+} file;
