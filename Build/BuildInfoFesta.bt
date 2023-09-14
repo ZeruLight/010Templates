@@ -1,63 +1,75 @@
+struct PS1 {
+    ubyte Len;
+    char String[Len];
+};
+
+struct PS2 {
+    uint16 Len;
+    char String[Len];
+};
+
 struct TRIAL {
-    uint32 trialId;
-    ubyte unk;
-    ubyte trialType;
-    uint32 targetId;
-    uint16 goalNum;
-    uint16 location;
-    uint16 soulsReward;
-    ubyte unk;
-    ubyte monopolyState;
-    uint16 unk;
+    uint32 ID;
+    uint16 TrialType;
+    uint32 Target;
+    uint16 GoalNum;
+    uint16 Location;
+    uint16 Souls;
+    uint16 Monopoly;
+    uint16 Unk;
 };
 
 struct REWARD {
-    uint32 unk;
-    uint16 soulsReq;
-    uint16 itemID;
-    uint32 unk;
-    ubyte claimed;
+    ubyte Unk;
+    ubyte Unk;
+    uint16 Unk;
+    uint16 Unk;
+    uint16 Unk;
+    uint16 Unk;
+    uint16 Unk;
+    ubyte Unk;
+    Printf("{%d,%d,%d,%d,%d,%d,%d,%d},\n", Unk[0], Unk[1], Unk[2], Unk[3], Unk[4], Unk[5], Unk[6], Unk[7]);
 };
 
 struct WINNER {
     uint32 GuildID;
     uint16 CategoryID;
     uint16 Team;
-    ubyte len;
-    string GuildName;
+    PS1 GuildName;
 };
 
 struct FILE {
+    BigEndian();
     uint16 opcode;
-    uint32 ackHandle;
-    ubyte isBuffered;
-    ubyte unk;
-    uint16 packetSize;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
 
-    uint32 festaId;
-    time_t registrationTime;
-    time_t festivalTime;
-    time_t totallingTime;
-    time_t rewardTime;
-    time_t unkTime;
-    time_t currentTime;
+    uint32 ID;
+    uint32 RegistrationTime;
+    uint32 FestivalTime;
+    uint32 TotallingTime;
+    uint32 RewardTime;
+    uint32 UnkTime;
+    Printf("%d,%d,%d,%d", FestivalTime-RegistrationTime, TotallingTime-FestivalTime, RewardTime-TotallingTime, UnkTime-RewardTime);
+    time_t CurrentTime;
 
-    ubyte unk;
-    ubyte stringLen;
-    string festaString;
+    ubyte Unk;
+    PS1 FestaString;
 
-    uint32 unk;
-    uint32 blueSouls;
-    uint32 redSouls;
+    uint32 Unk;
+    uint32 BlueSouls;
+    uint32 RedSouls;
 
-    uint16 numTrials;
-    TRIAL trials[numTrials];
+    uint16 NumTrials;
+    TRIAL Trials[NumTrials];
 
-    uint16 numRewards;
-    REWARD Rewards[numRewards];
+    uint16 NumRewards;
+    REWARD Rewards[NumRewards] <optimize=false>;
 
-    uint16 unk;
-    uint32 unk;
+    uint32 Unk;
+    uint16 Unk;
 
     uint16 Winners;
     WINNER CategoryWinners[Winners] <optimize=false>;
@@ -65,11 +77,16 @@ struct FILE {
     uint16 Winners;
     WINNER DailyWinners[Winners] <optimize=false>;
 
-    local int i;
-    for (i = 0; i < 15; i++) {
-        uint16 unk;
-    }
+    uint32 Unk;
+    uint32 Unk;
+    uint32 Unk;
+    uint32 Unk;
+    uint32 Unk;
+    uint16 Unk;
+    uint16 Unk;
+    uint16 Unk;
+    uint16 Unk;
+    uint16 Unk;
 
-    uint16 lenMarkup;
-    string markup;
+    PS2 FestaString;
 } file;

@@ -1,7 +1,7 @@
 enum <ubyte> BROADCASTTYPE {
     Targeted = 1,
     Stage = 3,
-    Semaphore = 6,
+    Server = 6,
     World = 10
 };
 
@@ -15,9 +15,9 @@ enum <ubyte> MESSAGETYPE {
 };
 
 struct FILE {
+    BigEndian();
     uint16 opcode;
-    uint16 Unk;
-    uint16 Unk;
+    uint32 CID;
     BROADCASTTYPE BroadcastType;
     MESSAGETYPE MessageType;
     uint16 DataLen;

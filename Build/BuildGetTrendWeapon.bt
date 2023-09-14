@@ -1,0 +1,16 @@
+struct TRENDWEAPON {
+    ubyte WeaponType;
+    uint16 WeaponID;
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte Unk;
+    uint16 PacketSize;
+    
+    ubyte LenWeps;
+    TRENDWEAPON TrendWeapons[LenWeps];
+} file;

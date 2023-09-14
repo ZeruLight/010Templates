@@ -1,0 +1,10 @@
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    ubyte BinaryType0;
+    ubyte BinaryType1;
+    ubyte LenStageID;
+    uint16 LenStageData;
+    char StageID[LenStageID];
+    ubyte StageData[LenStageData];
+} file;

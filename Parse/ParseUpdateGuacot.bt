@@ -1,7 +1,6 @@
 struct GOOK {
     uint32 Index;
-    uint16 Type;
-    ubyte Unk[42];
+    int16 Data[22];
     time_t Birthday1;
     time_t Birthday2;
     ubyte NameLen;
@@ -9,6 +8,7 @@ struct GOOK {
 };
 
 struct FILE {
+    BigEndian();
     uint16 opcode;
     uint32 AckHandle;
     

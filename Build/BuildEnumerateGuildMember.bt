@@ -19,6 +19,7 @@ struct RP {
 };
 
 struct FILE {
+    BigEndian();
     uint16 opcode;
     uint32 AckHandle;
     ubyte IsBuffered;

@@ -1,17 +1,47 @@
-struct PAPER {
-    uint16 Unk[7];
+struct DATA {
+    uint16 Unk0 <bgcolor=0xcc0000>;
+    int16 Unk1 <bgcolor=0xaa0011>;
+    int16 Unk2 <bgcolor=0x990033>;
+    int16 Unk3 <bgcolor=0x770055>;
+    int16 Unk4 <bgcolor=0x550077>;
+    int16 Unk5 <bgcolor=0x330099>;
+    int16 Unk6 <bgcolor=0x1100aa>;
+    Printf("{%d,%d,%d,%d,%d,%d,%d},\n", Unk0, Unk1, Unk2, Unk3, Unk4, Unk5, Unk6);
+};
+
+struct GIFT {
+    uint16 Unk0 <bgcolor=0xcc0000>;
+    uchar Unk1 <bgcolor=0x990033>;
+    uchar Unk2 <bgcolor=0x550077>;
+    uint16 Unk3 <bgcolor=0x1100aa>;
+    Printf("{%d,%d,%d,%d},\n", Unk0, Unk1, Unk2, Unk3);
 };
 
 struct FILE {
+    BigEndian();
+    /*
     uint16 opcode;
     uint32 AckHandle;
     ubyte IsBuffered;
-    ubyte Error;
+    ubyte Unk;
     uint16 PacketSize;
+    */
 
-    uint32 ID;
     uint32 Unk;
     uint32 Unk;
-    uint32 NumPaper;
-    PAPER Paper[NumPaper];
+    uint32 Unk;
+    uint32 PaperLen <fgcolor=0x00ff00>;
+
+    local uint y <hidden=true> = FTell();
+    local uchar x <hidden=true>;
+    if (FSkip(PaperLen*14) == -1) {
+        x = 1;
+    }
+    FSeek(y);
+
+    if (x == 0) {
+        DATA Paper[PaperLen] <optimize=false>;
+    } else {
+        GIFT Paper[PaperLen] <optimize=false>;
+    }
 } file;

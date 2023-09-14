@@ -1,0 +1,26 @@
+struct RAVIUPDATE {
+    ubyte Op;
+    ubyte Dest;
+    uint32 Data;
+};
+
+struct PKT {
+    uint16 opcode;
+    if (opcode != 61) {
+        Exit(0);
+    }
+    uint32 AckHandle;
+
+    uint32 SemaphoreID;
+    uint16 Null;
+    uint16 LenData;
+    RAVIUPDATE Updates[LenData/6];
+    ubyte Null;
+};
+
+struct FILE {
+    BigEndian();
+    while (1) {
+        PKT Pkt <optimize=false>;
+    }
+} file;

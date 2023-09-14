@@ -11,10 +11,15 @@ struct LOGENTRY {
     // 99 91 = 39313 = halk items fed
     ubyte Type1;
     ubyte Type2;
-    int16 Data[15];
+    int16 Unk0;
+    int32 Unk1;
+    int32 Unk2;
+    int32 Unk3;
+    int32 Unk4[4]; // Does not exist before G1
 };
 
 struct FILE {
+    BigEndian();
     uint16 opcode;
     uint32 AckHandle;
 

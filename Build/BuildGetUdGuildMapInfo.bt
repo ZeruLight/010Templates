@@ -2,12 +2,12 @@ struct TILE { // 23 bytes
     uint16 TileID;
     uint16 NextTile;
     uint16 BranchTile;
-    uint16 QuestFileID;
-    uint32 Unk1;
+    uint16 QuestFileID[3];
     ubyte BranchIndex;
     ubyte Type;
     uint32 Points;
-    ubyte Unk2[5];
+    ubyte Unk1;
+    uint32 Unk2;
 };
 
 struct MAP { // 1480 bytes
@@ -32,8 +32,7 @@ struct TILEPROG { // 23 bytes
     uint16 TileID;
     uint16 NextTile;
     uint16 BranchTile;
-    uint16 QuestFileID;
-    uint32 Unk;
+    uint16 QuestFileID[3];
     ubyte BranchIndex;
     ubyte Type;
     ubyte Claimed;
@@ -54,7 +53,8 @@ struct FILE {
     ubyte ErrorCode;
     uint16 PacketSize;
 
-    uint16 NumMaps;
+    ubyte IsInvalid;
+    ubyte NumMaps;
     MAP Maps[NumMaps];
     uint16 NumChests;
     CHESTS Chests[NumChests];

@@ -1,5 +1,31 @@
+enum <uint16> RIGHTNAME {
+    TRIAL = 1,
+    BASIC,
+    EXTRA_A,
+    EXTRA_B,
+    MOBILE,
+    PREMIUM,
+    PALLONE,
+    LEGEND,
+    XBCAFE,
+    SECRET,
+    ROYAL,
+    NBOOST,
+    DEBUG = 20,
+    COG_LINK_EXPIRED,
+    _360_GOLD,
+    PS3_TROP,
+    COG_LINK,
+    CAFE_SP,
+    OFFICIAL,
+    CARD,
+    CARD_EX,
+    FREE,
+    NETCAFE
+};
+
 struct RIGHT {
-    uint16 ID;
+    RIGHTNAME ID;
     uint16 Unk;
     time_t Expires;
 };

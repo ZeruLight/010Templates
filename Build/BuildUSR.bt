@@ -1,0 +1,34 @@
+struct CHANNEL {
+    uint16 Port;
+    uint16 Index;
+    uint16 MaxPlayers;
+    uint16 CurrentPlayers;
+    uint32 Unk;
+    uint32 Unk;
+    uint32 Unk;
+    uint16 Unk;
+    uint16 Unk;
+    uint16 Unk;
+    uint16 Unk;
+};
+
+struct SERVER {
+    uint32 IP;
+    uint16 Index;
+    uint16 Unk;
+    uint16 NumChannels;
+    ubyte Type;
+    ubyte Season;
+    ubyte Recommended;
+    ubyte LenByte;
+    char NameDesc[65];
+    uint32 ClientFlags;
+    CHANNEL Channels[NumChannels];
+};
+
+struct FILE {
+    BigEndian();
+    SERVER Servers[6] <optimize=false>;
+    time_t Timestamp;
+    uint32 Unk;
+} file;

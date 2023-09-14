@@ -1,0 +1,27 @@
+struct GEAR {
+    ubyte Unk1[4];
+    ubyte Exists;
+    ubyte Type;
+    uint16 ID;
+    ubyte Level;
+    ubyte Unk2[3];
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    ubyte BinaryType;
+    uint16 DataSize;
+    LittleEndian();
+    uint16 HRP;
+    ubyte Unk1[14];
+    char Comment[96];
+    GEAR Gear[7];
+    ubyte Unk2[22];
+    uint16 RP;
+    ubyte Unk3[20];
+    uint16 GR;
+    ubyte Unk4[14];
+    ubyte MissionClears[14]; // Why is this repeated 14 times...
+    ubyte Unk5[114];
+} file;

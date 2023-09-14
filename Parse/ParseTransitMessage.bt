@@ -1,0 +1,36 @@
+enum <ubyte> PARAMTYPE {
+    RankRestriction,
+    HuntTarget,
+    StageType,
+    Unknown0,
+    MaxPlayers,
+    QuestFileID
+};
+
+struct SEARCHPARAM {
+    PARAMTYPE Type;
+    ubyte Params;
+    local int i;
+    for (i=0; i<Params; i++) {
+        uint16 Param;
+    }
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte Unk;
+    ubyte Unk;
+    uint16 SearchType;
+    uint16 SearchDataLen;
+    switch (SearchType) {
+        case 4:
+            ubyte Params;
+            uint16 MaxResults;
+            local int i;
+            for (i=0; i<Params; i++) {
+                SEARCHPARAM Param;
+            }
+    }
+} file;

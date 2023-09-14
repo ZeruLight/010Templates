@@ -1,3 +1,6 @@
+// 0 = Item, 1 = Equipment
+local int Mode = 0;
+
 struct ITEM {
     uint32 ID;
     uint16 Index;
@@ -15,6 +18,7 @@ struct EQUIP {
 };
 
 struct FILE {
+    BigEndian();
     uint16 opcode;
     uint32 AckHandle;
     ubyte IsBuffered;
@@ -22,7 +26,10 @@ struct FILE {
     uint16 PacketSize;
     
     uint16 NumItems;
-    //ITEM Items[NumItems];
-    EQUIP Items[NumItems];
+    if (Mode) {
+        EQUIP Items[NumItems];
+    } else {
+        ITEM Items[NumItems];
+    }
     uint16 Unk;
 } file;

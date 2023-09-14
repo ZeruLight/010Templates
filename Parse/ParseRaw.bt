@@ -1,0 +1,63 @@
+struct PS1 {
+    ubyte Len;
+    char String[Len];
+};
+
+struct CAST_BINARY {
+    enum <ubyte> BROADCASTTYPE {
+        Targeted = 1,
+        Stage = 3,
+        Server = 6,
+        World = 10
+    };
+    enum <ubyte> MESSAGETYPE {
+        State,
+        Chat,
+        Quest,
+        Data,
+        MailNotify = 4,
+        Emote = 6
+    };
+    uint32 CID;
+    BROADCASTTYPE BroadcastType;
+    MESSAGETYPE MessageType;
+    uint16 DataLen;
+    ubyte Data[DataLen];
+};
+
+struct CREATE_ACQUIRE_SEMAPHORE {
+    uint32 AckHandle;
+    uint16 Unk;
+    ubyte PlayerCount;
+    PS1 SemaphoreID;
+};
+
+struct POSITION_OBJECT {
+    uint32 CID;
+    float X;
+    float Y;
+    float Z;
+};
+
+struct FILE {
+    BigEndian();
+    while (1) {
+        uint16 opcode;
+        switch (opcode) {
+        case 16:
+            break;
+        case 24:
+            CAST_BINARY CastBinary;
+            break;
+        case 27:
+            CAST_BINARY CastedBinary;
+            break;
+        case 54:
+            CREATE_ACQUIRE_SEMAPHORE CreateAcquireSemaphore;
+            break;
+        case 66:
+            POSITION_OBJECT PositionObject;
+            break;
+        };
+    };
+} file;

@@ -1,9 +1,16 @@
 struct FILE {
     uint16 opcode;
-    uint32 ObjectID;
+
+    ubyte ObjectID[4];
+    Printf("%d %d\n", ObjectID[1], ObjectID[3]);
+
     float X;
     float Y;
     float Z;
     uint32 Unk;
     uint32 OwnerCharID;
-} file;
+};
+
+while (1) {
+    FILE file;
+}

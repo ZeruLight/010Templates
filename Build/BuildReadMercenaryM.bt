@@ -1,0 +1,34 @@
+struct EQUIPMENT {
+    ubyte IsEquipped;
+    ubyte ItemType;
+    uint16 ItemID;
+    uint16 Unk;
+    uint16 Decos[3];
+    uint32 Unk;
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte Unk;
+    uint16 PacketSize;
+    
+    uint32 RastaID;
+    uint32 CID;
+    ubyte Unk;
+    ubyte Unk;
+    ubyte Unk;
+    ubyte Unk;
+    ubyte Unk;
+    ubyte Unk;
+    ubyte Unk;
+    ubyte Unk;
+    char Name[18];
+    ubyte Unk1[3];
+    ubyte Unk2[3];
+    uint32 Unk;
+    EQUIPMENT Equipment[6];
+    ubyte Unk3[8];
+} file;

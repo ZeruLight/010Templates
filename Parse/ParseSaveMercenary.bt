@@ -1,3 +1,12 @@
+struct EQUIPMENT {
+    ubyte Unk;
+    ubyte Unk;
+    uint16 Unk;
+    uint16 Unk;
+    uint16 Decos[3];
+    uint32 Unk;
+};
+
 struct FILE {
     BigEndian();
     uint16 opcode;
@@ -6,7 +15,36 @@ struct FILE {
     uint32 LenData;
     uint32 GCP;
     uint32 ContractID;
-    uint32 MercDataSize;
-    uint32 MercIndex;
-    ubyte MercData[MercDataSize];
+    uint32 RastaDataSize;
+    uint32 RastaExists;
+
+    if (RastaExists) {
+        uint32 RastaID;
+        uint32 Unk;
+        ubyte Unk;
+        ubyte Unk;
+        ubyte Unk;
+        ubyte Unk;
+        ubyte Unk;
+        ubyte Unk;
+        ubyte Unk;
+        ubyte Unk;
+        char Name[18];
+        ubyte Unk;
+        ubyte Unk;
+        ubyte Unk;
+        ubyte Unk;
+        ubyte Unk;
+        ubyte Unk;
+        uint32 Unk;
+        EQUIPMENT Equipment[6];
+        ubyte Unk;
+        ubyte Unk;
+        ubyte Unk;
+        ubyte Unk;
+        ubyte Unk;
+        ubyte Unk;
+        ubyte Unk;
+        ubyte Unk;
+    }
 } file;

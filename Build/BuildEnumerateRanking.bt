@@ -12,18 +12,19 @@ struct EVENT {
     uint32 EventID;
     uint16 CupGroup;
     uint16 Limit;
-    uint16 Unk;
-    uint16 QuestFileID;
+    uint32 QuestFileID;
     PS1 EventTitle;
+    Printf("{%d,%d,%d,%d,%s},\n", EventID,CupGroup,Limit,QuestFileID,EventTitle.String);
 };
 
 struct CUP {
     uint32 CupID;
     uint16 CupGroup;
-    uint16 Unk;
+    uint16 Type;
     uint16 Unk;
     PS1 CupTitle;
     PS2 CupDesc;
+    Printf("{%d,%d,%d,%d,%s,%s},\n", CupID,CupGroup,Type,Unk,CupTitle.String,CupDesc.String);
 };
 
 struct FILE {
@@ -34,10 +35,10 @@ struct FILE {
     ubyte Unk;
     uint16 PacketSize;
 
-    time_t TimeStart;
-    time_t TimeEnd;
-    time_t TimeUnk;
-    time_t TimeUnk;
+    uint32 TimeStart;
+    uint32 TimeEnd;
+    uint32 TimeUnk;
+    uint32 TimeUnk;
     time_t TimeCurrent;
 
     ubyte Unk;

@@ -1,0 +1,11 @@
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+
+    uint32 Unk0;
+    uint16 Null;
+    uint16 Size;
+    uint32 Unk;
+    ubyte Data[Size];
+} file;

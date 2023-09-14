@@ -1,0 +1,152 @@
+local int MaxCategories = 5;
+local int PrintEvents = 0;
+local int PrintCategories = 0;
+
+struct PS1 {
+    ubyte Len;
+    char String[Len];
+};
+
+struct EVENT {
+    uint32 ID;
+    uint32 Unk;
+    int16 MinHR;
+    int16 MaxHR;
+    int16 MinSR;
+    int16 MaxSR;
+    int16 MinGR;
+    int16 MaxGR;
+    uint16 Unk;
+    ubyte Unk;
+    ubyte Unk;
+    uint16 Unk;
+    uint16 Unk;
+    time_t Time1;
+    time_t Time2;
+    ubyte Unk;
+    PS1 EventString1;
+    PS1 EventString2;
+    PS1 EventString3;
+    PS1 EventString4;
+    PS1 EventString5;
+    local char Prefix[];
+    local uint16 Categories[MaxCategories];
+};
+
+struct CODE {
+    uint32 EventID;
+    ubyte Unk;
+    char Prefix[4];
+    local int i;
+    for (i=0; i<LenEvents; i++) {
+        if (Events[i].ID == EventID) {
+            Events[i].Prefix = Prefix;
+            break;
+        }
+    }
+};
+
+struct CATEGORY {
+    uint16 ID;
+    ubyte Type;
+    ubyte LenTitle;
+    ubyte LenDesc;
+    char Title[LenTitle]; 
+    char Desc[LenDesc];
+};
+
+struct LINK {
+    uint16 CategoryID;
+    uint32 CampaignID;
+    local int i, j;
+    for (i=0; i<LenEvents; i++) {
+        if (Events[i].ID == CampaignID) {
+            for (j=0; j<MaxCategories; j++) {
+                if (Events[i].Categories[j] == 0) {
+                    Events[i].Categories[j] = CategoryID;
+                    break;
+                }
+            }
+            break;
+        }
+    }
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
+
+    ubyte LenEvents;
+    if (LenEvents == 255) {
+        uint16 LenEvents;
+    }
+    EVENT Events[LenEvents] <optimize=false>;
+
+    ubyte LenCodes;
+    if (LenCodes == 255) {
+        uint16 LenCodes;
+    }
+    CODE Codes[LenCodes] <optimize=false>;
+    
+    ubyte LenCategories;
+    if (LenCategories == 255) {
+        uint16 LenCategories;
+    }
+    CATEGORY Categories[LenCategories] <optimize=false>;
+    
+    ubyte LenLinks;
+    if (LenLinks == 255) {
+        uint16 LenLinks;
+    }
+    LINK Links[LenLinks] <optimize=false>;
+
+    if (PrintEvents > 0) {
+        local int i, j;
+        for (i=0; i<LenEvents; i++) {
+            Printf("{%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,TimeMidnight(),TimeMidnight().Add(24 * time.Hour),%d,\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",[]uint16{\n",
+                Events[i].ID,
+                Events[i].Unk[0],
+                Events[i].MinHR,
+                Events[i].MaxHR,
+                Events[i].MinSR,
+                Events[i].MaxSR,
+                Events[i].MinGR,
+                Events[i].MaxGR,
+                Events[i].Unk[1],
+                Events[i].Unk[2],
+                Events[i].Unk[3],
+                Events[i].Unk[4],
+                Events[i].Unk[5],
+                Events[i].Unk[6],
+                ConvertString(Events[i].EventString1.String, CHARSET_JAPANESE, CHARSET_UTF8),
+                ConvertString(Events[i].EventString2.String, CHARSET_JAPANESE, CHARSET_UTF8),
+                ConvertString(Events[i].EventString3.String, CHARSET_JAPANESE, CHARSET_UTF8),
+                ConvertString(Events[i].EventString4.String, CHARSET_JAPANESE, CHARSET_UTF8),
+                ConvertString(Events[i].EventString5.String, CHARSET_JAPANESE, CHARSET_UTF8),
+                Events[i].Prefix
+            );
+            for (j=0; j<MaxCategories; j++) {
+                if (Events[i].Categories[j] > 0) {
+                    Printf("%d,\n", Events[i].Categories[j]);
+                }
+            }
+            Printf("}},\n");
+        }
+    }
+    
+    if (PrintCategories > 0) {
+        local int i;
+        for (i=0; i<LenCategories; i++) {
+            Printf("{%d,%d,\"%s\",\"%s\"},\n",
+                Categories[i].ID,
+                Categories[i].Type,
+                ConvertString(Categories[i].Title, CHARSET_JAPANESE, CHARSET_UTF8),
+                ConvertString(Categories[i].Desc, CHARSET_JAPANESE, CHARSET_UTF8)
+            );
+        }
+    }
+} file;

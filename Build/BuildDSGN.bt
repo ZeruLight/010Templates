@@ -17,7 +17,7 @@ struct CHARA {
     uint32 CID;
     uint16 HRP;
     uint16 WeaponType;
-    uint32 LastLogin;
+    time_t LastLogin;
     ubyte IsFemale;
     ubyte IsNew;
     ubyte OldGR;
@@ -59,8 +59,11 @@ struct FILE {
     // If logging in via PSN
     //char PSNName[20];
 
-    uint32 Unk;
-    PS2 Unk; // Key?
+    uint16 Unk;
+    uint16 Unk;
+    if (Unk == 20000) {
+        PS2 Unk; // Key?
+    }
     ubyte Unk;
     uint32 Unk;
     uint16 Unk;
@@ -68,8 +71,8 @@ struct FILE {
     time_t ReturnExpiry;
     uint32 Unk;
     uint32 UnkID;
-    uint32 MezFesStart;
-    uint32 MezFesEnd;
+    time_t MezFesStart;
+    time_t MezFesEnd;
     ubyte Unk;
     uint32 SoloTickets;
     uint32 GroupTickets;

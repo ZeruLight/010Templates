@@ -1,26 +1,30 @@
 struct PIECE {
+    uint16 Unk; // DataType?
     uint16 Len;
     char Data[Len];
-    uint16 Unk;
 };
 
 struct CHUNK {
-    uint16 Unk;
+    ubyte Unk;
+    ubyte Unk;
     uint16 LenChunk;
-
-    uint16 Unk1; // Pieces?
-    PIECE Pieces[Unk1+4] <optimize=false>;
+    if (LenChunk == 172) { // Vita
+        PIECE Pieces[13] <optimize=false>;
+    } else if (LenChunk == 164) { // PS3
+        PIECE Pieces[10] <optimize=false>;
+    } else {
+        PIECE Pieces[2] <optimize=false>;
+    }    
 };
 
 struct FILE {
     BigEndian();
     string LoginCode;
     string Username; // ?
-    string Password; // ?
+    char Password[2]; // ?
     uint16 Unk;
     uint32 LenData;
 
     CHUNK Chunk1 <optimize=false>;
-    uint16 Unk;
     CHUNK Chunk2 <optimize=false>;
 } file;

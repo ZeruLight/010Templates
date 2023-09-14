@@ -41,6 +41,24 @@ struct ALLYGUILD {
     PS2 LeaderName;
 };
 
+struct APPLYMEMBER {
+    uint32 CharID;
+    uint16 Unk;
+    uint16 Unk;
+    uint16 HRP;
+    uint16 GR;
+    PS1 Name;
+};
+
+struct APPLYALLIANCE {
+    uint32 GuildID;
+    uint32 LeaderID;
+    uint32 Unk;
+    uint16 Unk;
+    PS2 GuildName;
+    PS2 LeaderName;
+};
+
 struct FILE {
     BigEndian();
     uint16 opcode;
@@ -72,13 +90,16 @@ struct FILE {
     ubyte Unk2[4];
     ubyte ReturnGuild;
     ubyte EarnedSpecialHall;
-    ubyte Unk3[2];
-    uint32 EventRP;
+    ubyte Unk3;
+    ubyte Unk4;
+    if (Unk4 >= 2) {
+        uint32 EventRP;
+    }
     PS1 Pugi1Name;
     PS1 Pugi2Name;
     PS1 Pugi3Name;
     OUTFIT OutfitData;
-    ubyte Unk4[13];
+    ubyte Unk5[13];
     uint32 AllianceID;
     if (AllianceID > 0) {
         time_t CreatedAt;
@@ -89,7 +110,9 @@ struct FILE {
         ALLYGUILD AllyGuilds[NumAllyGuilds] <optimize=false>;
     }    
     uint16 NumGApplicants;
+    APPLYMEMBER GApplications[NumGApplicants];
     uint16 NumAApplicants;
+    APPLYALLIANCE AApplications[NumAApplicants];
     ubyte NumParts;
     ICONPART Parts[NumParts];
     ubyte Unk;
