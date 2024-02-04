@@ -51,12 +51,12 @@ struct QUEST {
     ubyte QuestType <bgcolor=0x407f80>;
     ubyte Unk <bgcolor=0x605fa0>; // 0 = Scenario quest
     uint16 Unk <bgcolor=0x803fc0>;
-    uint32 Mark <bgcolor=0xa01ff0>;
+    //uint32 Mark <bgcolor=0xa01ff0>;
     uint16 Unk <bgcolor=0xc000ef>;
     uint16 Length <bgcolor=0xf000cf>;
 
     local int QuestFileID;
-    Printf("%d,%d,%d,%d,%d,%d,%d,%d,%d", QuestID,Unk[0],Index,MaxPlayers,QuestType,Unk[1],Unk[2],Mark,Unk[3]);
+    Printf("%d,%d,%d,%d,%d,%d,%d,%d", QuestID,Unk[0],Index,MaxPlayers,QuestType,Unk[1],Unk[2],Unk[3]);
     LittleEndian();
 
     if (SimpleMode == 1) {

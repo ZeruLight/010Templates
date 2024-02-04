@@ -2,6 +2,7 @@ struct SCENARIO {
     uint32 ID;
     ubyte Unk1;
     ubyte Category;
+    Printf("(%d,%d),\n", ID, Category);
 };
 
 struct FILE {
@@ -13,5 +14,5 @@ struct FILE {
     uint16 PacketSize;
 
     ubyte NumScenarios;
-    SCENARIO Scenarios[NumScenarios];
+    SCENARIO Scenarios[NumScenarios] <optimize=false>;
 } file;

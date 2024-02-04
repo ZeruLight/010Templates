@@ -22,7 +22,7 @@ struct ROLL {
     ubyte NumItems;
     uint16 FrontierPoints;
     ubyte DailyLimit;
-    ubyte Unk;
+    PS1 RollName;
     ROLLITEM RollItems[NumItems];
 };
 

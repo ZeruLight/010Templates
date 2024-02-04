@@ -1,0 +1,26 @@
+struct PS1 {
+    ubyte Len;
+    char String[Len];
+};
+
+struct STAGE {
+    uint16 ReservedSlots;
+    uint16 CurrentSlots;
+    uint16 CurrentSlots;
+    uint16 MaxSlots;
+    ubyte Lock;
+    PS1 StageID;
+    Printf("ReservedSlots->%d\tCurrentSlots->%d\tMaxSlots->%d\tLock->%d\tStageID->%s\n", ReservedSlots, CurrentSlots[0], MaxSlots, Lock, StageID.String);
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte Unk;
+    uint16 PacketSize;
+
+    uint16 NumStages;
+    STAGE Stages[NumStages] <optimize=false>;
+} file;

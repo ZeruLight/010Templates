@@ -1,5 +1,5 @@
 struct BONUS {
-    ubyte Unk; // bool Claimed?
+    ubyte ID;
     uint32 Points;
 };
 

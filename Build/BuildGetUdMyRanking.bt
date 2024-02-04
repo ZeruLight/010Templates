@@ -1,0 +1,16 @@
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
+
+    uint32 Unk;
+    uint32 Unk;
+    uint32 Unk;
+    uint32 Unk;
+    uint32 Unk;
+    uint32 Unk;
+    char GuildName[25];
+} file;

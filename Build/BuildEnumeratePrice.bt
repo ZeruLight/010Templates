@@ -1,0 +1,46 @@
+struct LBPRICE {
+    uint16 Unk;
+    uint16 Unk;
+    uint32 Unk;
+};
+
+struct WANTED {
+    uint32 Unk;
+    uint32 Unk;
+    uint32 Unk;
+    uint16 Unk;
+    uint16 Unk;
+    uint16 Unk;
+    uint16 Unk;
+    uint16 Unk;
+    uint16 Unk;
+    uint16 Unk;
+};
+
+struct GZPRICE {
+    uint16 Unk;
+    uint16 Gz;
+    uint16 Unk;
+    uint16 Unk;
+    uint16 MonID;
+    uint16 Unk;
+    ubyte Unk;
+    //Printf("{%d,%d,%d,%d,%d,%d,%d},\n",Unk[0],Gz,Unk[1],Unk[2],MonID,Unk[3],Unk[4]);
+    Printf("%d\n",MonID);
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte Unk;
+    uint16 PacketSize;
+
+    uint16 NumLbPrice;
+    LBPRICE LbPrices[NumLbPrice];
+    uint16 NumWanted;
+    WANTED Wanted[NumWanted];
+    ubyte NumGzPrice;
+    GZPRICE GzPrices[NumGzPrice] <optimize=false>;
+} file;

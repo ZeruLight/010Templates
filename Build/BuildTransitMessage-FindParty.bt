@@ -1,27 +1,43 @@
 struct PARTY {
-    uint32 IPAddress;
+    local string IPAddress;
+    ubyte Octets[4] <hidden=true>;
+    IPAddress = Str("%d.%d.%d.%d", Octets[3], Octets[2], Octets[1], Octets[0]);
+    
     uint16 Port;
     
     uint16 Unk0; // Always 0?
     uint16 Unk1; // Known: 0, 1, 2
-    uint16 CurrentPlayers;
+    uint16 ReservedPlayers;
     uint16 MaxPlayers;
-    uint16 DepartedPlayers;
-    uint16 MaxPlayersDupe;
-    ubyte Unk3; // Always 1?
+    uint16 MovedPlayers;
 
+    ubyte Unk;
+    ubyte Unk; // Known: 4
+    ubyte Unk; // Known: 1
     ubyte LenStage;
     ubyte LenBinary0;
     ubyte LenBinary1;
-    uint16 RankRestriction;
-    uint16 Target;
-    ubyte Unk4[12];
+
+    Printf("Unk1->%d\n", Unk1);
+
+    int16 RankRestriction;
+    int16 Target;
+    int16 Unk; // Looking for n?
+    int16 Unk;
+    int16 Unk;
+    int16 Unk;
+    int16 Unk; // Stage prefix type?
+
+    ubyte Unk;
+    ubyte Unk;
+
     char Stage[LenStage];
     char Binary0[LenBinary0];
     char Binary1[LenBinary1];
 };
 
 struct FILE {
+    BigEndian();
     uint16 opcode;
     uint32 AckHandle;
     ubyte IsBuffered;

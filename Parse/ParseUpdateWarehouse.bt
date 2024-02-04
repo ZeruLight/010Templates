@@ -15,6 +15,7 @@ struct CHANGEDEQUIP {
 };
 
 struct FILE {
+    BigEndian();
     uint16 opcode;
     uint32 AckHandle;
 

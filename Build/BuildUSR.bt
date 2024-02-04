@@ -3,32 +3,48 @@ struct CHANNEL {
     uint16 Index;
     uint16 MaxPlayers;
     uint16 CurrentPlayers;
-    uint32 Unk;
-    uint32 Unk;
-    uint32 Unk;
     uint16 Unk;
     uint16 Unk;
     uint16 Unk;
     uint16 Unk;
+    uint16 Unk;
+    uint16 Unk;
+    uint16 Unk;
+    uint16 Unk;
+    uint16 Unk;
+    uint16 Unk;
+    Printf("%d,%d,%d,%d\n", CurrentPlayers, Unk[6], Unk[7], Unk[8]);
 };
 
 struct SERVER {
-    uint32 IP;
+    ubyte IP[4] <hidden=true>;
+    local string _IP;
+    _IP = Str("%d.%d.%d.%d", IP[3], IP[2], IP[1], IP[0]);
     uint16 Index;
     uint16 Unk;
     uint16 NumChannels;
     ubyte Type;
     ubyte Season;
     ubyte Recommended;
-    ubyte LenByte;
-    char NameDesc[65];
+    ubyte LenName; // Always 65, client does not obey this though
+    local int i <hidden=true>;
+    i = FTell();
+    string Name;
+    string Desc;
+    FSeek(i+65);
     uint32 ClientFlags;
-    CHANNEL Channels[NumChannels];
+    //Printf("Idx->%d\tUnk->%d\tTyp->%d\tSsn->%d\tRcm->%d\tFlg->%d\n", Index, Unk, Type, Season, Recommended, ClientFlags);
+    CHANNEL Channels[NumChannels] <optimize=false>;
 };
 
 struct FILE {
     BigEndian();
-    SERVER Servers[6] <optimize=false>;
+    char Header[3];
+    uint16 LenServers;
+    uint16 LenData;
+    uint32 Checksum;
+
+    SERVER Servers[LenServers] <optimize=false>;
     time_t Timestamp;
     uint32 Unk;
 } file;

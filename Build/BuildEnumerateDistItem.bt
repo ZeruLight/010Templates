@@ -1,0 +1,61 @@
+struct PS1 {
+    ubyte Len;
+    char String[Len];
+};
+
+struct UNK0 {
+    ubyte Unk;
+    uint32 Unk;
+};
+
+struct UNK1 {
+    uint32 Unk;
+    uint32 Unk;
+    uint32 Unk;
+};
+
+struct ITEMDIST {
+    uint32 ID;
+    time_t Deadline;
+    uint32 Unk;
+    uint16 Acceptable;
+    uint16 Accepted;
+    uint16 Unk;
+    int16 MinHR;
+    int16 MaxHR;
+    int16 MinSR;
+    int16 MaxSR;
+    int16 MinGR;
+    int16 MaxGR;
+    ubyte Unk;
+    uint16 Unk;
+    ubyte Unk;
+    uint16 Unk;
+    uint16 Unk;
+    ubyte Unk;
+    PS1 Name;
+    local int i, j;
+    for (i=0;i<6;i++) {
+        for (j=0;j<13;j++) {
+            UNK0 Unk;
+        }
+    }
+    ubyte Unk0;
+    if (Unk0 <= 10) {
+        for (i=0;i<Unk0;i++) {
+            UNK1 Unk;
+        }
+    }
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte Unk;
+    uint16 PacketSize;
+    
+    uint16 NumItemDists;
+    ITEMDIST ItemDists[NumItemDists] <optimize=false>;
+} file;

@@ -1,0 +1,38 @@
+struct DECOS {
+    uint16 DecoID;
+    uint16 DecoID;
+    uint16 DecoID;
+};
+
+struct SET {
+    uint16 ID;
+    char Name[20];
+    uint16 Unk;
+    uint16 Unk;
+    uint16 Unk;
+    uint16 Unk;
+    uint16 Unk;
+    uint16 Unk;
+    DECOS Unk;
+    DECOS Unk;
+    DECOS Unk;
+    DECOS Unk;
+    DECOS Unk;
+    DECOS Unk;
+    local int i;
+    for (i=0;i<2;i++) {
+        uint16 Unk;
+    }
+    uint16 Unk;
+    uint16 Unk;
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    uint32 DataSize;
+    ubyte Exists;
+    ubyte LenSets;
+    SET Sets[LenSets];
+} file;

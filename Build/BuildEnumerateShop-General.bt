@@ -1,17 +1,18 @@
 struct ITEM {
     uint32 ID;
-    uint16 Unk;
-    uint16 ItemID;
+    uint32 ItemID;
     uint32 Cost;
     uint16 Quantity;
     uint16 MinHR;
     uint16 MinSR;
     uint16 MinGR;
-    uint16 StoreLevel;
+    ubyte Unk;
+    ubyte StoreLevel;
     uint16 MaxQuantity;
     uint16 UsedQuantity;
     uint16 RoadFloors;
     uint16 RoadFatalis;
+    Printf("(6,5,%d,%d,%d,%d,0,%d,0,0,0,0),\n",ItemID,Cost,Quantity,MinHR,MinGR);
 };
 
 struct FILE {

@@ -7,5 +7,19 @@ struct FILE {
     uint16 Null;
     uint16 Size;
     uint32 Unk;
-    ubyte Data[Size];
+    
+    LittleEndian();
+    if (Size == 1196) {
+        uint16 QuestFile;
+        FSkip(10);
+        uint16 QuestTime;
+        FSkip(18);
+        ubyte MonsterKills[176];
+        FSkip(340);
+        uint16 UnkRank;
+        FSkip(500);
+        uint16 UnkRank;
+    } else {
+        ubyte Data[Size];
+    }
 } file;

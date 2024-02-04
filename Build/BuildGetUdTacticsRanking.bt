@@ -1,0 +1,20 @@
+struct TACTICSRANK {
+    uint32 Rank;
+    uint32 Score;
+    char Name[32];
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
+
+    uint32 OwnRank;
+    uint32 OwnScore;
+    char OwnName[32];
+    ubyte NumTacticsRanks;
+    TACTICSRANK TacticsRanks[NumTacticsRanks];
+} file;

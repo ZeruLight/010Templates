@@ -1,15 +1,52 @@
+local int In1 = 0;
+local int In2 = 0;
+
 struct EQUIP { // 16
+    uint32 Unk;
     ubyte IsEquipped;
     ubyte ItemType;
     uint16 ItemID;
-    uint16 UnkUint16;
-    uint16 Jewel;
-    uint16 Jewel;
-    uint16 Jewel;
-    uint16 Jewel;
-    uint16 Jewel;
+    uint16 Unk;
+    uint16 Deco;
+    uint16 Deco;
+    uint16 Deco;
 };
 
+struct MERC {
+    uint32 ID;
+    uint32 CID;
+    ubyte Unk;
+    ubyte Unk;
+    ubyte Unk; // 60
+    ubyte Unk;
+    ubyte Unk;
+    ubyte Unk;
+    ubyte Unk;
+    ubyte Unk;
+    char Name[18];
+    ubyte UnkBytes1[3];
+    ubyte UnkBytes2[3];
+    EQUIP Equipment[6];
+    uint32 Unk;
+    ubyte UnkBytes3[8];
+};
+
+struct LENDPACT {
+    uint32 MercID;
+    uint32 CID;
+    ubyte Unk;
+    time_t ContractStart;
+    time_t ContractExpire;
+    char Name[18];
+};
+
+struct LOANPACT {
+    uint32 MercID;
+    uint32 CID;
+    time_t ContractStart;
+    time_t ContractExpire;
+    char Name[18];
+};
 
 struct FILE {
     BigEndian();
@@ -19,23 +56,16 @@ struct FILE {
     ubyte Unk;
     uint16 PacketSize;
     
-    ubyte Unk1[3];
-
+    //ubyte Unk1[3];
+    
     // Start MercData[148]
-    uint32 MercID;
-    uint32 CID;
-    ubyte UnkBool;
-    ubyte UnkBool;
-    ubyte Unk3C;
-    ubyte UnkBytes1[5];
-    char CName[18];
-    ubyte UnkBytes2[5];
-    uint16 UnkUint16;
-    uint16 UnkUint16;
-    ubyte UnkUint8;
-    EQUIP Equipment[6];
-    ubyte UnkBytes3[8];
+    MERC Merc;
     // End MercData
+    
+    switch In1 {
+    
+    };
+
 
     uint32 GCP;
 } file;

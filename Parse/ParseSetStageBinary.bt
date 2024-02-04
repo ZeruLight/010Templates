@@ -7,4 +7,6 @@ struct FILE {
     uint16 LenStageData;
     char StageID[LenStageID];
     ubyte StageData[LenStageData];
-} file;
+};
+
+FILE Test[4] <optimize=false>;

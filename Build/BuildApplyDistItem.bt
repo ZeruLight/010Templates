@@ -1,0 +1,51 @@
+enum <ubyte> ITEMTYPE {
+    Legs,
+    Head,
+    Chest,
+    Arms,
+    Waist,
+    Melee,
+    Ranged,
+    Item,
+    Furniture,
+    Unk1,
+    Zenny,
+    Unk2,
+    FestaPoint,
+    Unk3,
+    TorePoint,
+    PoogieOutfit,
+    ReStylePoint,
+    NPoint,
+    GoocooOutfit,
+    PremiumKoban,
+    TrialKoban,
+    FrontierPoint,
+    Course,
+    RP,
+    BondPoint = 25,
+    SpecialHall = 28,
+    SongNote = 29,
+    ItemBoxPage = 30,
+    EquipBoxPage = 31
+};
+
+struct DISTITEM {
+    ITEMTYPE ItemType;
+    uint32 ItemID;
+    uint32 Quantity;
+    uint32 DistItemID;
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte Unk;
+    uint16 PacketSize;
+
+    uint32 DistributionID;
+    uint16 NumDistItem;
+    DISTITEM DistItems[NumDistItem];
+} file;

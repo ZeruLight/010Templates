@@ -1,0 +1,19 @@
+struct BONUSQUEST {
+    uint16 QuestFileID;
+    time_t Start;
+    time_t End;
+    uint16 Points;
+};
+
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+
+    ubyte IsBuffered;
+    ubyte ErrorCode;
+    uint16 PacketSize;
+
+    ubyte LenBonusQuests;
+    BONUSQUEST BonusQuests[LenBonusQuests];
+} file;

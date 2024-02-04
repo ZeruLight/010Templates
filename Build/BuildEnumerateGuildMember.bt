@@ -1,16 +1,17 @@
-struct PS2 {
-    uint16 Len;
+struct PS1 {
+    ubyte Len;
     char String[Len];
 };
 
 struct MEMBER {
-    uint32 CharId;
+    uint32 CID;
     uint16 HR;
-    uint16 GR;
+    //uint16 GR;
     uint16 WeaponID;
     ubyte WeaponType;
     uint16 Index;
-    PS2 Name;
+    ubyte NoLeader;
+    PS1 Name;
 };
 
 struct RP {

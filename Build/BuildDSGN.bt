@@ -25,13 +25,20 @@ struct CHARA {
     char Name[16];
     char Unk[32];
     uint16 GR;
-    uint16 Unk;
+    ubyte Unk;
+    ubyte Unk;
 };
 
 struct CONTACT {
     uint32 MyID;
     uint32 TheirID;
     PS1 Name;
+};
+
+struct UNK1 {
+    ubyte Unk;
+    uint32 Unk;
+    PS1 Unk;
 };
 
 struct FILE {
@@ -59,18 +66,29 @@ struct FILE {
     // If logging in via PSN
     //char PSNName[20];
 
+    // CapLink
     uint16 Unk;
     uint16 Unk;
-    if (Unk == 20000) {
-        PS2 Unk; // Key?
+    if (Unk[1] == 20000 || Unk[1] == 20002) {
+        PS2 UnkKey; // Key?
     }
     ubyte Unk;
-    uint32 Unk;
+    if (Unk[2] > 0) {
+        UNK1 Unk1[Unk[2]]<optimize=false>;
+    }
     uint16 Unk;
-    PS2 Unk;
+    uint16 Unk;
+    uint16 Unk;
+    if (Unk[3] == 51729 && Unk[4] == 1 && Unk[5] == 20000) {
+        PS2 Unk;
+    }
+
+    // Return
     time_t ReturnExpiry;
     uint32 Unk;
-    uint32 UnkID;
+
+    // MezFes
+    uint32 MezFesID;
     time_t MezFesStart;
     time_t MezFesEnd;
     ubyte Unk;

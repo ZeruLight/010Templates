@@ -1,10 +1,14 @@
+struct PS1 {
+    ubyte Len;
+    char String[Len];
+};
+
 struct GOOK {
     uint32 Index;
     int16 Data[22];
-    time_t Birthday1;
-    time_t Birthday2;
-    ubyte NameLen;
-    char Name[NameLen];
+    time_t LastInteraction;
+    time_t Birthday;
+    PS1 Name;
 };
 
 struct FILE {
