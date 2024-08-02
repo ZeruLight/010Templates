@@ -41,6 +41,48 @@ struct UNK1 {
     PS1 Unk;
 };
 
+struct SMCPAIR {
+    char part1[2];
+    char part2[2];
+};
+
+struct SMCGROUP {
+    local int j;
+    while (1) {
+        SMCPAIR smcPair;
+        if (smcPair[j].part1[0] == 0 && smcPair[j].part1[1] == 0 && smcPair[j].part2[0] == 0 && smcPair[j].part2[1] == 0) {
+            i += 4*(j+1);
+            break;
+        }
+        j++;
+        l++;
+    }
+};
+
+struct NGWPART {
+    BigEndian();
+    char part1[2];
+    LittleEndian();
+    int16 part2;
+    if ((part1[0] != 0 || part1[1] != 0) && part2 != -1) {
+        Printf("%s,%d\n", ConvertString(part1, CHARSET_JAPANESE, CHARSET_UTF8), part2);
+    }
+};
+
+struct NGWORD {
+    uint16 wordLength;
+    uint16 unk;
+    local int j, k;
+    local char word[32];
+    if (wordLength != 0) {
+        NGWPART wordParts[wordLength+1] <optimize=false>;
+        j++;
+        i += 4+(4*(wordLength+1));
+    } else {
+        i += 4;
+    }
+};
+
 struct FILE {
     BigEndian();
     ubyte RespCode;
@@ -61,7 +103,45 @@ struct FILE {
     PS4 Notices[NumNotice]<optimize=false>;
     uint32 LastCID;
     uint32 Rights;
-    PS2 Filters;
+    uint16 NGWordLength;
+
+    LittleEndian();
+    char smc[4];
+    uint32 smcLength;
+    local int i, k, l;
+    while (1) {
+        if (i >= smcLength) {
+            break;
+        }
+        l = 0;
+        Printf("{[][]rune{");
+        SMCGROUP smcChar;
+        for (k=0; k<l; k++) {
+            Printf("{'%s','%s'},", ConvertString(smcChar.smcPair[k].part1, CHARSET_JAPANESE, CHARSET_UTF8), ConvertString(smcChar.smcPair[k].part2, CHARSET_JAPANESE, CHARSET_UTF8));
+        }
+        Printf("}},\n");
+    }
+    
+    char nam[4];
+    uint32 namLength;
+    i = 0;
+    while (1) {
+        if (i >= namLength) {
+            break;
+        }
+        NGWORD namWords;
+    }
+    
+    char msg[4];
+    uint32 msgLength;
+    i = 0;
+    while (1) {
+        if (i >= msgLength) {
+            break;
+        }
+        NGWORD msgWords;
+    }
+    BigEndian();
 
     // If logging in via PSN
     //char PSNName[20];
@@ -80,7 +160,7 @@ struct FILE {
     uint16 Unk;
     uint16 Unk;
     if (Unk[3] == 51729 && Unk[4] == 1 && Unk[5] == 20000) {
-        PS2 Unk;
+        PS2 CapLinkAddress;
     }
 
     // Return

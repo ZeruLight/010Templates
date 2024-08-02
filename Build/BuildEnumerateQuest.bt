@@ -1,7 +1,7 @@
 // 0 = Decode entire quest
 // 1 = Split data and quest strings
 // 2 = Read entire quest as block
-local int SimpleMode = 2;
+local int SimpleMode = 0;
 
 struct QSTRING {
     string QString;
@@ -28,18 +28,19 @@ struct QUESTSTRINGS {
 struct EQUIPREST {
     uint16 ItemID <fgcolor=0xffffff>;
     uint16 Deco1 <fgcolor=0x00ffff>;
-    uint16 Deco2 <fgcolor=0xff00ff>;
-    uint16 Deco3 <fgcolor=0xffff00>;
+    //uint16 Deco2 <fgcolor=0xff00ff>;
+    //uint16 Deco3 <fgcolor=0xffff00>;
+};
+
+struct OBJECTIVE {
+    uint32 Unk;
+    uint16 Unk;
+    uint16 Unk;
 };
 
 struct REST {
     ubyte Unk;
     ubyte Unk;
-};
-
-struct MONICON {
-    ubyte Unk;
-    ubyte MonID;
 };
 
 struct QUEST {
@@ -51,7 +52,7 @@ struct QUEST {
     ubyte QuestType <bgcolor=0x407f80>;
     ubyte Unk <bgcolor=0x605fa0>; // 0 = Scenario quest
     uint16 Unk <bgcolor=0x803fc0>;
-    //uint32 Mark <bgcolor=0xa01ff0>;
+    uint32 Mark <bgcolor=0xa01ff0>;
     uint16 Unk <bgcolor=0xc000ef>;
     uint16 Length <bgcolor=0xf000cf>;
 
@@ -60,35 +61,33 @@ struct QUEST {
     LittleEndian();
 
     if (SimpleMode == 1) {
-        ubyte QuestData[320] <bgcolor=0x000090>;
+        ubyte QuestData[224] <bgcolor=0x000090>;
         QuestFileID = QuestData[47]*256 + QuestData[46];
     } else if (SimpleMode == 2) {
         ubyte QuestData[Length] <bgcolor=0x000090>;
         QuestFileID = QuestData[47]*256 + QuestData[46];
     } else {
-        uint16 Unk;
-        ubyte ObjectiveType <bgcolor=0x00ff00>;
-        ubyte Unk <hidden=true>;
+        local int i;
+        i = FTell();
+        uint32 QuestID;
         ubyte Stars <bgcolor=0xff0000>;
         uint16 CourseReq <bgcolor=0x0000ff>;
         uint16 Unk <hidden=true>;
         uint16 Unk <hidden=true>;
-        ubyte Unk <hidden=true>;
+        ubyte Players;
         uint32 Fee <bgcolor=0x00ff00>;
         uint32 RewardMain <bgcolor=0xff0000>;
         uint32 RewardSubA <bgcolor=0x0000ff>;
         uint32 RewardSubB <bgcolor=0x00ff00>;
         uint32 Unk <hidden=true>;
         uint32 TimeLimit <bgcolor=0xff0000>;
-        ubyte MapIcon <bgcolor=0x0000ff>;
-        uint32 Unk <hidden=true>;
-        ubyte Unk <hidden=true>;
-        ubyte Unk <hidden=true>;
+        uint32 MapIcon <bgcolor=0x0000ff>;
+        uint32 StringPointer;
         REST Restrictions <bgcolor=0x00ff00>;
-        ubyte Unk <hidden=true>;
         uint16 QuestFileID <bgcolor=0xff0000>;
-        uint32 Unk <hidden=true>;
-        MONICON MonIcon <bgcolor=0x0000ff>;
+        OBJECTIVE Objective[3];
+        ubyte Unk;
+        ubyte Unk;
         uint16 MinHR <bgcolor=0x00ff00>;
         uint16 MaxHR <bgcolor=0xff0000>;
         uint16 MinJoinHR <bgcolor=0x0000ff>;
@@ -98,10 +97,10 @@ struct QUEST {
         uint16 MinJoinSR <bgcolor=0x0000ff>;
         uint16 MaxJoinSR <bgcolor=0x00ff00>;
         uint32 Unk <hidden=true>;
-        uint16 MinGR <bgcolor=0xff0000>;
-        uint16 MaxGR <bgcolor=0x0000ff>;
-        uint16 MinJoinGR <bgcolor=0x00ff00>;
-        uint16 MaxJoinGR <bgcolor=0xff0000>;
+        //uint16 MinGR <bgcolor=0xff0000>;
+        //uint16 MaxGR <bgcolor=0x0000ff>;
+        //uint16 MinJoinGR <bgcolor=0x00ff00>;
+        //uint16 MaxJoinGR <bgcolor=0xff0000>;
         ubyte Unk2[10] <hidden=true>;
         EQUIPREST BootRest <bgcolor=0x0000ff>;
         EQUIPREST WepRest <bgcolor=0x00ff00>;
@@ -120,6 +119,7 @@ struct QUEST {
         uint16 RewardMat3 <bgcolor=0x0000ff>;
         uint32 Unk <hidden=true>;
         ubyte Unk5[134] <hidden=true>;
+        FSeek(i+StringPointer);
     }
     Printf(",%d\n", QuestFileID);
     //Printf("%d,%d,%d,%d\n", MaxPlayers, QuestType, QuestFileID, Mark);
@@ -141,6 +141,7 @@ struct TUNES {
     uint16 Value <bgcolor=0x0000ff>;
     local uint16 RealID = ID^TimeOffset;
     local uint16 RealValue = Value^TimeOffset;
+    Printf("%d\t%d\n", RealID, RealValue);
 };
 
 struct VSBETS {

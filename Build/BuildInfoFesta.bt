@@ -47,12 +47,12 @@ struct FILE {
     uint16 PacketSize;
 
     uint32 ID;
-    uint32 RegistrationTime;
-    uint32 FestivalTime;
-    uint32 TotallingTime;
-    uint32 RewardTime;
-    uint32 UnkTime;
-    Printf("%d,%d,%d,%d", FestivalTime-RegistrationTime, TotallingTime-FestivalTime, RewardTime-TotallingTime, UnkTime-RewardTime);
+    time_t RegistrationTime;
+    time_t FestivalTime;
+    time_t TotallingTime;
+    time_t RewardTime;
+    time_t UnkTime;
+    //Printf("%d,%d,%d,%d", FestivalTime-RegistrationTime, TotallingTime-FestivalTime, RewardTime-TotallingTime, UnkTime-RewardTime);
     time_t CurrentTime;
 
     ubyte Unk;

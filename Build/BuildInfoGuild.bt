@@ -84,10 +84,10 @@ struct FILE {
     ubyte LenGuildLeader;
     char GuildName[LenGuildName];
     char GuildComment[LenGuildComment];
-    ubyte FestaColor;
+    byte FestaColor;
     uint32 RankRP;
     char GuildLeader[LenGuildLeader];
-    ubyte Unk2[4];
+    uint32 Unk2;
     ubyte ReturnGuild;
     ubyte EarnedSpecialHall;
     ubyte Unk3;
@@ -99,7 +99,11 @@ struct FILE {
     PS1 Pugi2Name;
     PS1 Pugi3Name;
     OUTFIT OutfitData;
-    ubyte Unk5[13];
+    ubyte MemberLimit;
+    uint32 RPLimit;
+    time_t RoomExpiry;
+    uint16 RoomRP;
+    uint16 Unk5;
     uint32 AllianceID;
     if (AllianceID > 0) {
         time_t CreatedAt;

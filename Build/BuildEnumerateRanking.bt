@@ -35,10 +35,10 @@ struct FILE {
     ubyte Unk;
     uint16 PacketSize;
 
-    uint32 TimeStart;
-    uint32 TimeEnd;
-    uint32 TimeUnk;
-    uint32 TimeUnk;
+    time_t TimeStart;
+    time_t TimeEnd;
+    time_t TimeUnk;
+    time_t TimeUnk;
     time_t TimeCurrent;
 
     ubyte Unk;

@@ -1,0 +1,10 @@
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    uint32 FestaID;
+    uint32 GuildID;
+    uint16 LenSouls;
+    uint16 Souls[LenSouls];
+    ubyte Unk;
+} file;

@@ -1,0 +1,15 @@
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    ubyte IsBuffered;
+    ubyte Unk;
+    uint16 PacketSize;
+
+    uint16 TotalStamps;
+    uint16 RedeemedStamps;
+    uint16 UpdatedStamps;
+    uint16 ItemID;
+    uint16 Quantity;
+    time_t StampStart;
+} file;

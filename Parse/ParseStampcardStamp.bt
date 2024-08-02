@@ -1,0 +1,15 @@
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+    uint16 HR;
+    uint16 GR;
+    uint16 Stamps;
+    uint16 Zeroed;
+    uint32 Reward1;
+    uint32 Reward2;
+    uint32 Item1;
+    uint32 Item2;
+    uint32 Quantity1;
+    uint32 Quantity2;
+} file;
