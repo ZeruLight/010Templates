@@ -1,7 +1,7 @@
 // 0 = Decode entire quest
 // 1 = Split data and quest strings
 // 2 = Read entire quest as block
-local int SimpleMode = 0;
+local int SimpleMode = 1;
 
 struct QSTRING {
     string QString;
@@ -61,7 +61,7 @@ struct QUEST {
     LittleEndian();
 
     if (SimpleMode == 1) {
-        ubyte QuestData[224] <bgcolor=0x000090>;
+        ubyte QuestData[320] <bgcolor=0x000090>;
         QuestFileID = QuestData[47]*256 + QuestData[46];
     } else if (SimpleMode == 2) {
         ubyte QuestData[Length] <bgcolor=0x000090>;

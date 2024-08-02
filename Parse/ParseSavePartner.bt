@@ -1,0 +1,8 @@
+struct FILE {
+    BigEndian();
+    uint16 opcode;
+    uint32 AckHandle;
+
+    uint16 LenData;
+    ubyte Data[LenData]; 
+} file;

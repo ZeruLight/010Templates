@@ -2,7 +2,6 @@ local int In1 = 0;
 local int In2 = 0;
 
 struct EQUIP { // 16
-    uint32 Unk;
     ubyte IsEquipped;
     ubyte ItemType;
     uint16 ItemID;
@@ -10,6 +9,7 @@ struct EQUIP { // 16
     uint16 Deco;
     uint16 Deco;
     uint16 Deco;
+    uint32 Unk;
 };
 
 struct MERC {
@@ -26,8 +26,8 @@ struct MERC {
     char Name[18];
     ubyte UnkBytes1[3];
     ubyte UnkBytes2[3];
-    EQUIP Equipment[6];
     uint32 Unk;
+    EQUIP Equipment[6];
     ubyte UnkBytes3[8];
 };
 

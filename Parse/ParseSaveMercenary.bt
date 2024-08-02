@@ -1,10 +1,31 @@
-struct EQUIPMENT {
-    ubyte Unk;
-    ubyte Unk;
+struct EQUIP { // 16
+    ubyte IsEquipped;
+    ubyte ItemType;
+    uint16 ItemID;
     uint16 Unk;
-    uint16 Unk;
-    uint16 Decos[3];
+    uint16 Deco;
+    uint16 Deco;
+    uint16 Deco;
     uint32 Unk;
+};
+
+struct MERC {
+    uint32 ID;
+    uint32 CID;
+    ubyte Unk;
+    ubyte Unk;
+    ubyte Unk; // 60
+    ubyte Unk;
+    ubyte Unk;
+    ubyte Unk;
+    ubyte Unk;
+    ubyte Unk;
+    char Name[18];
+    ubyte UnkBytes1[3];
+    ubyte UnkBytes2[3];
+    uint32 Unk;
+    EQUIP Equipment[6];
+    ubyte UnkBytes3[8];
 };
 
 struct FILE {
@@ -15,36 +36,10 @@ struct FILE {
     uint32 LenData;
     uint32 GCP;
     uint32 ContractID;
-    uint32 RastaDataSize;
-    uint32 RastaExists;
+    uint32 MercDataSize;
+    uint32 MercExists;
 
-    if (RastaExists) {
-        uint32 RastaID;
-        uint32 Unk;
-        ubyte Unk;
-        ubyte Unk;
-        ubyte Unk;
-        ubyte Unk;
-        ubyte Unk;
-        ubyte Unk;
-        ubyte Unk;
-        ubyte Unk;
-        char Name[18];
-        ubyte Unk;
-        ubyte Unk;
-        ubyte Unk;
-        ubyte Unk;
-        ubyte Unk;
-        ubyte Unk;
-        uint32 Unk;
-        EQUIPMENT Equipment[6];
-        ubyte Unk;
-        ubyte Unk;
-        ubyte Unk;
-        ubyte Unk;
-        ubyte Unk;
-        ubyte Unk;
-        ubyte Unk;
-        ubyte Unk;
+    if (MercExists) {
+        MERC Merc;
     }
 } file;
