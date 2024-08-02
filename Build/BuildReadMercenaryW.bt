@@ -56,16 +56,14 @@ struct FILE {
     ubyte Unk;
     uint16 PacketSize;
     
-    //ubyte Unk1[3];
-    
-    // Start MercData[148]
-    MERC Merc;
-    // End MercData
-    
-    switch In1 {
-    
-    };
-
+    ubyte NumLends;
+    LENDPACT Lends[NumLends];
+    ubyte NumLoans;
+    LOANPACT Loans[NumLoans];
+    ubyte MercExists;
+    if (MercExists > 0) {
+        MERC Merc;
+    }
 
     uint32 GCP;
 } file;
